@@ -13,13 +13,15 @@ app.engine(".hbs", hbs({
 })
 );
 
+app.use("/assets", express.static("public"));
+
 app.get("/", function(req, res){
   res.render("welcome-page");
 });
 
 app.get("/senators", function(req,res){
   res.send("Senatoooors");
-})
+});
 
 app.listen(3001, function(){
   console.log("Ready to rock steady!");
