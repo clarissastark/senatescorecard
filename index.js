@@ -1,5 +1,6 @@
 var express = require("express");
 var hbs = require("express-handlebars");
+var db = require("./db/connection");
 
 var app = express();
 
@@ -20,7 +21,9 @@ app.get("/", function(req, res){
 });
 
 app.get("/senators", function(req,res){
-  res.send("Senatoooors");
+  res.render("senators-index", {
+    senators: db.senators
+  });
 });
 
 app.listen(3001, function(){
