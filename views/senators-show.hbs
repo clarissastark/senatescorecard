@@ -1,3 +1,4 @@
+{{#if senator}}
 <h2>{{senator.firstName}} {{senator.lastName}}</h2>
 
 <h3>LCV Score</h3>
@@ -34,3 +35,6 @@ senator."Gutting Clean Water Protections (295)"
 senator."Extreme Assault on Clean Water Rule (CRA) (297)"
 senator."Extreme Attack on Carbon Pollution Limits for Existing Power Plants (CRA) (306)"
 senator."Extreme Attack on Carbon Pollution Limits for New Power Plants (CRA) (307)" -->
+{{else}}
+<h2>That senator couldn't be found!</h2>
+{{/if}}
