@@ -4,6 +4,7 @@ var db = require("./db/connection");
 
 var app = express();
 
+app.set("port", process.env.PORT || 3001);
 app.set("view engine", "hbs");
 
 app.engine(".hbs", hbs({
@@ -39,6 +40,6 @@ app.get("/senators/:lastName", function(req, res){
   });
 });
 
-app.listen(3001, function(){
+app.listen(app.get("port"), function(){
   console.log("Ready to rock steady!");
 });
