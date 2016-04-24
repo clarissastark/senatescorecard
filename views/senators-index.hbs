@@ -1,1 +1,7 @@
 <h2>There are {{senators.length}} senators in the database</h2>
+
+{{#each senators as |senator index|}}
+<h3>
+  <a href="/senators/{{senator.lastName}}">{{senator.firstName}} {{senator.lastName}}</a>
+</h3>
+{{/each}}
