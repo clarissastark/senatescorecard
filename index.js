@@ -12,6 +12,11 @@ var SMongo = cmongo(session);
 var Senator = mongoose.model("Senator");
 var UserReview = mongoose.model("UserReview");
 
+process.env.session_secret = env.session_secret;
+process.env.t_callback_url = env.t_callback_url;
+process.env.t_consumer_key = env.t_consumer_key;
+process.env.t_consumer_secret = env.t_consumer_secret;
+
 app.use(session({
   secret: "random string",
   resave: false,
