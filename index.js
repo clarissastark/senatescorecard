@@ -44,10 +44,25 @@ app.get("/senators/:lastName", function(req, res){
 
 app.post("/senators/:lastName/reviews", function(req, res){
   Senator.findOne({lastName: req.params.lastName}).then(function(senator){
-    senator.userReviews.push(req.body.userReview);
+    senator.reviews.push(req.body.reviews);
     senator.save().then(function(){
       res.redirect("/senators/" + senator.lastName);
     });
+  });
+});
+
+// app.post("/senators/:lastName/reviews", function(req,res){
+//   Senator.findOneAndUpdate({name: req.params.name}, req.body.senator.review, {new: true}).then(function(senator){
+//     res.redirect("/senators/" + senator.lastName);
+//   });
+// });
+
+app.post("/senators/:lastName/reviews/:index", function(req, res){
+  Senator.findOne({lastName: req.params.lastName}).then(function(senator){
+    senator.userReviews.splice(req.params.index, 1);
+      senator.save().then(function(){
+        res.redirect("/senators/" + senator.lastName);
+      });
   });
 });
 

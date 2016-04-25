@@ -2,8 +2,16 @@
 <h2>Sen. {{senator.firstName}} {{senator.lastName}}</h2>
 
 <h3>User Reviews</h3>
-{{#each senator.userReviews as |userReview|}}
-<li>{{userReview.body}} | <em>{{userReview.date}}</em></li>
+{{#each senator.reviews as |review index|}}
+<p>{{review}}</p>
+<!-- <form action="/senators/{{senator.lastName}}/reviews/{{index}}" method="post"> -->
+  <!-- <label>Review:</label>
+  <textarea name="userReview[body]" value={{senator.userReview.body}}></textarea>
+  <label>Date:</label>
+  <input type="date" name="userReview[date]" value={{senator.userReview.date}} />
+  <p><em>{{userReview.date}}</em></p>
+  <button type="Sumbit">Update Review</button>
+</form> -->
 {{/each}}
 
 <h3>LCV Score</h3>
@@ -22,13 +30,14 @@
 
 <h2>Write a Review</h2>
 <form action="/senators/{{senator.lastName}}/reviews" method="post">
-  <input type="hidden" name="senator[lastName]" value={{senator.lastName}} />
-  <label>Review:</label>
-  <textarea name="userReviews[body]" placeholder="Write your review here..."></textarea>
-  <label>Date:</label>
-  <input type="date" name="senator[userReviews][date]" />
-  <button type="submit">Add A Review</button>
+  <textarea name="reviews"></textarea>
+  <button type="submit">Add a review</button>
 </form>
+
+
+
+
+
 <!--
 
 [Limiting Access to the Courts (7)]
