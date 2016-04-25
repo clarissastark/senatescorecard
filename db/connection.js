@@ -1,4 +1,3 @@
-var seedData = require("./senators_seeds.json");
 var mongoose = require("mongoose");
 
 var UserReviewSchema = new mongoose.Schema (
@@ -23,6 +22,4 @@ mongoose.model("Senator", SenatorSchema);
 mongoose.model("UserReview", UserReviewSchema);
 mongoose.connect("mongodb://localhost/senatescore")
 
-module.exports = {
-  senators: seedData
-}
+module.exports = mongoose;
