@@ -4,14 +4,9 @@
 <h3>User Reviews</h3>
 {{#each senator.reviews as |review index|}}
 <p>{{review}}</p>
-<!-- <form action="/senators/{{senator.lastName}}/reviews/{{index}}" method="post"> -->
-  <!-- <label>Review:</label>
-  <textarea name="userReview[body]" value={{senator.userReview.body}}></textarea>
-  <label>Date:</label>
-  <input type="date" name="userReview[date]" value={{senator.userReview.date}} />
-  <p><em>{{userReview.date}}</em></p>
-  <button type="Sumbit">Update Review</button>
-</form> -->
+<form action="/senators/{{../senator.lastName}}/reviews/{{index}}" method="post">
+  <button type="submit">Delete review</button>
+</form>
 {{/each}}
 
 <h3>LCV Score</h3>

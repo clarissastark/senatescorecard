@@ -57,14 +57,15 @@ app.post("/senators/:lastName/reviews", function(req, res){
 //   });
 // });
 
-app.post("/senators/:lastName/reviews/:index", function(req, res){
-  Senator.findOne({lastName: req.params.lastName}).then(function(senator){
-    senator.userReviews.splice(req.params.index, 1);
+app.post("/senators/:name/reviews/:index", function(req, res){
+  Senator.findOne({lastName: req.params.name}).then(function(senator){
+    senator.reviews.splice(req.params.index, 1);
       senator.save().then(function(){
         res.redirect("/senators/" + senator.lastName);
       });
   });
 });
+
 
 app.listen(app.get("port"), function(){
   console.log("Ready to rock steady!");
