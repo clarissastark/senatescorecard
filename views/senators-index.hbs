@@ -5,3 +5,16 @@
   <a href="/senators/{{senator.lastName}}">{{senator.firstName}} {{senator.lastName}}</a>
 </h3>
 {{/each}}
+
+
+<h2>Write a Review</h2>
+<form action="/senators/:lastName" method="post">
+  <label for="male">Male</label>
+    <select name="senator[lastName]">
+      {{#each senators as |senator|}}
+    <option value="senator[lastName]">Sen. {{senator.lastName}} - {{senator.state}}</option>
+    {{/each}}
+  <textarea type="text" name="UserReview[body]" value="UserReview[body]" placeholder="Write your review here..."></textarea>
+  <input type="date" value="UserReview[date]" />
+  <button type="submit">Add A Review</button>
+</form>

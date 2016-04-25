@@ -1,6 +1,7 @@
 var express = require("express");
 var hbs = require("express-handlebars");
 var mongoose = require("./db/connection");
+var parser = require("body-parser");
 
 var app = express();
 
@@ -18,6 +19,7 @@ app.engine(".hbs", hbs({
 );
 
 app.use("/assets", express.static("public"));
+app.use(parser.urlencoded({extended: true}));
 
 app.get("/", function(req, res){
   res.render("welcome-page");
@@ -37,6 +39,10 @@ app.get("/senators/:lastName", function(req, res){
       senator: senator
     });
   });
+});
+
+app.post("/senators/:lastName", function(req, res){
+  res.json(req.body);
 });
 
 app.listen(app.get("port"), function(){
