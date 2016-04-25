@@ -20,6 +20,11 @@ var SenatorSchema = new mongoose.Schema (
 
 mongoose.model("Senator", SenatorSchema);
 mongoose.model("UserReview", UserReviewSchema);
-mongoose.connect("mongodb://localhost/senatescore")
+
+if(process.env.NODE_ENV == "production"){
+  mongoose.connect(process.env.MONGODB_URI);
+}else{
+  mongoose.connect("mongodb://localhost/senatescore");
+}
 
 module.exports = mongoose;

@@ -32,15 +32,10 @@ app.get("/senators", function(req,res){
 });
 
 app.get("/senators/:lastName", function(req, res){
-  var desiredName = req.params.lastName;
-  var senatorOutput;
-  db.senators.forEach(function(senator){
-    if(desiredName === senator.lastName){
-      senatorOutput = senator;
-    }
-  });
-  res.render("senators-show", {
-    senator: senatorOutput
+  Senator.findOne({lastName: req.params.lastName}).then(function(senator){
+    res.render("senators-show", {
+      senator: senator
+    });
   });
 });
 
