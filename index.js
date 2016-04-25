@@ -4,6 +4,7 @@ var session = require("express-session");
 var cmongo = require("connect-mongo");
 var mongoose = require("./db/connection");
 var parser = require("body-parser");
+var env = require("./env");
 
 var app = express();
 var SMongo = cmongo(session);
