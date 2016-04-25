@@ -1,12 +1,24 @@
 var express = require("express");
 var hbs = require("express-handlebars");
+var session = require("express-session");
+var cmongo = require("connect-mongo");
 var mongoose = require("./db/connection");
 var parser = require("body-parser");
 
 var app = express();
+var SMongo = cmongo(session);
 
 var Senator = mongoose.model("Senator");
 var UserReview = mongoose.model("UserReview");
+
+app.use(session({
+  secret: "random string",
+  resave: false,
+  saveUninitialized: false,
+  store: new SMongo({
+    mongooseConnection: mongoose.connection
+  })
+}));
 
 app.set("port", process.env.PORT || 3001);
 app.set("view engine", "hbs");
@@ -42,6 +54,7 @@ app.get("/senators/:lastName", function(req, res){
   });
 });
 
+// adds a review of a senator to the db
 app.post("/senators/:lastName/reviews", function(req, res){
   Senator.findOne({lastName: req.params.lastName}).then(function(senator){
     senator.reviews.push(req.body.reviews);
@@ -57,12 +70,13 @@ app.post("/senators/:lastName/reviews", function(req, res){
 //   });
 // });
 
+// deletes a review of a senator from the db
 app.post("/senators/:name/reviews/:index", function(req, res){
   Senator.findOne({lastName: req.params.name}).then(function(senator){
     senator.reviews.splice(req.params.index, 1);
-      senator.save().then(function(){
-        res.redirect("/senators/" + senator.lastName);
-      });
+    senator.save().then(function(){
+      res.redirect("/senators/" + senator.lastName);
+    });
   });
 });
 
