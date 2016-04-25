@@ -10,3 +10,9 @@ Senator.remove({}).then(function(){
       process.exit();
   });
 });
+
+UserReview.remove({}).then(function(){
+  UserReview.collection.insert(seedReviews).then(function(){
+      process.exit();
+  });
+});

@@ -6,6 +6,7 @@ var parser = require("body-parser");
 var app = express();
 
 var Senator = mongoose.model("Senator");
+var UserReview = mongoose.model("UserReview");
 
 app.set("port", process.env.PORT || 3001);
 app.set("view engine", "hbs");
@@ -41,8 +42,13 @@ app.get("/senators/:lastName", function(req, res){
   });
 });
 
-app.post("/senators/:lastName", function(req, res){
-  res.json(req.body);
+app.post("/senators/:lastName/reviews", function(req, res){
+  Senator.findOne({lastName: req.params.lastName}).then(function(senator){
+    senator.userReviews.push(req.body.userReview);
+    senator.save().then(function(){
+      res.redirect("/senators/" + senator.lastName);
+    });
+  });
 });
 
 app.listen(app.get("port"), function(){

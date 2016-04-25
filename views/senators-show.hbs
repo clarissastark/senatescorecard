@@ -1,6 +1,11 @@
 {{#if senator}}
 <h2>Sen. {{senator.firstName}} {{senator.lastName}}</h2>
 
+<h3>User Reviews</h3>
+{{#each senator.userReviews as |userReview|}}
+<li>{{userReview.body}} | <em>{{userReview.date}}</em></li>
+{{/each}}
+
 <h3>LCV Score</h3>
 
 <p>2015 Score: {{senator.score2015}}%</p>
@@ -13,28 +18,46 @@
 <p>Climate Change Science: {{senator.[Climate Change Science (12)]}}</p>
 <p>Prioritizing Drilling on Public Lands: {{senator.[Prioritizing Drilling on Public Lands (17)]}}</p>
 <p>Forcing Tar Sands Polluters to Pay for Spills: {{senator.[Forcing Tar Sands Polluters to Pay for Spills (19)]}}</p>
-<!-- senator."International Climate Action (20)"
-senator."Liquefied Natural Gas (LNG)"
-senator."Exports (34)"
-senator."PrairieAnti-environment voteChicken Protections (35)"
-senator."National Monuments (37)"
-senator."Clean Energy Tax Credits (40)"
-senator."Fracking Drinking Water Loophole (41)"
-senator."Land & Water Conservation Fund (LWCF) (43)"
-senator."Renewable Electricity Standard (RES) (44)"
-senator."Keystone XL Tar Sands Pipeline (KXL) (49)"
-senator."Keystone XL Tar Sands Pipeline (KXL)"
-senator."Veto Override (68)"
-senator."Selling Off America's Public Lands (106)"
-senator."Responding to the Threat of Climate Change (115)"
-senator."Undermining Critical Habitat for Wildlife (128)"
-senator."InvestorAnti-environment voteState Dispute Settlement in Trade Agreements (188)"
-senator."Fast Track of Trade Agreements (193)"
-senator."Climate Change Science Education (238)"
-senator."Gutting Clean Water Protections (295)"
-senator."Extreme Assault on Clean Water Rule (CRA) (297)"
-senator."Extreme Attack on Carbon Pollution Limits for Existing Power Plants (CRA) (306)"
-senator."Extreme Attack on Carbon Pollution Limits for New Power Plants (CRA) (307)" -->
+
+
+<h2>Write a Review</h2>
+<form action="/senators/{{senator.lastName}}/reviews" method="post">
+  <input type="hidden" name="senator[lastName]" value={{senator.lastName}} />
+  <label>Review:</label>
+  <textarea name="userReviews[body]" placeholder="Write your review here..."></textarea>
+  <label>Date:</label>
+  <input type="date" name="senator[userReviews][date]" />
+  <button type="submit">Add A Review</button>
+</form>
+<!--
+
+[Limiting Access to the Courts (7)]
+[Attack on Clean Air Protections (9)]
+[Climate Change Science (12)]
+[Prioritizing Drilling on Public Lands (17)]
+[Forcing Tar Sands Polluters to Pay for Spills (19)]
+[International Climate Action (20)]
+[Liquefied Natural Gas (LNG)]
+[Exports (34)]
+[PrairieAnti-environment voteChicken Protections (35)]
+[National Monuments (37)]
+[Clean Energy Tax Credits (40)]
+[Fracking Drinking Water Loophole (41)]
+[Land & Water Conservation Fund (LWCF) (43)]
+[Renewable Electricity Standard (RES) (44)]
+[Keystone XL Tar Sands Pipeline (KXL) (49)]
+[Keystone XL Tar Sands Pipeline (KXL)]
+[Veto Override (68)]
+[Selling Off America's Public Lands (106)]
+[Responding to the Threat of Climate Change (115)]
+[Undermining Critical Habitat for Wildlife (128)]
+[InvestorAnti-environment voteState Dispute Settlement in Trade Agreements (188)]
+[Fast Track of Trade Agreements (193)]
+[Climate Change Science Education (238)]
+[Gutting Clean Water Protections (295)]
+[Extreme Assault on Clean Water Rule (CRA) (297)]
+[Extreme Attack on Carbon Pollution Limits for Existing Power Plants (CRA) (306)]
+[Extreme Attack on Carbon Pollution Limits for New Power Plants (CRA) (307)] -->
 {{else}}
 <h2>That senator couldn't be found!</h2>
 {{/if}}

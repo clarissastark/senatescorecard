@@ -2,8 +2,6 @@ var mongoose = require("mongoose");
 
 var UserReviewSchema = new mongoose.Schema (
   {
-    author: String,
-    senator: String,
     body: String,
     date: Date
   }
@@ -17,6 +15,7 @@ var SenatorSchema = new mongoose.Schema (
     state: String,
     score2015: Number,
     scoreLifetime: Number,
+    userReviews: [UserReviewSchema],
     "Limiting Access to the Courts (7)": String,
     "Attack on Clean Air Protections (9)": String,
     "Climate Change Science (12)": String,
