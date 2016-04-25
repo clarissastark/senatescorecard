@@ -1,8 +1,10 @@
 var express = require("express");
 var hbs = require("express-handlebars");
-var db = require("./db/connection");
+var mongoose = require("./db/connection");
 
 var app = express();
+
+var Senator = mongoose.model("Senator");
 
 app.set("port", process.env.PORT || 3001);
 app.set("view engine", "hbs");
@@ -22,8 +24,10 @@ app.get("/", function(req, res){
 });
 
 app.get("/senators", function(req,res){
-  res.render("senators-index", {
-    senators: db.senators
+  Senator.find({}).then(function(senators){
+    res.render("senators-index", {
+      senators: senators
+    });
   });
 });
 
