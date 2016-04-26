@@ -1,14 +1,13 @@
 var express = require("express");
 var router = express.Router();
 var hbs = require("express-handlebars");
-var session = require("express-session");
-var request = require("request");
-var qstring = require("qs");
 var mongoose = require("./db/connection");
 var parser = require("body-parser");
-var flash = require("connect-flash");
 var passport = require("passport");
-require("./config/passport");
+var session = require("express-session");
+var cookieParser = require("cookie-parser");
+var flash = require("connect-flash");
+require("./config/passport")(passport);
 
 var app = express();
 var SMongo = cmongo(session);
