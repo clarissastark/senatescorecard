@@ -1,13 +1,11 @@
 <div data-ng-app="senatescore">
-<h2><a href="/senators">Senate Scorecard</a></h2>
+  <h2><a data-ui-sref="index">Senate Scorecard</a></h2>
 
-<h2>There are {{senators.length}} senators in the database</h2>
+  <h2>There are {{indexVM.senators.length}} senators in the database</h2>
 
-{{#each senators as |senator index|}}
-<h3>
-  <a href="/senators/{{senator.lastName}}">{{senator.firstName}} {{senator.lastName}}</a>
-</h3>
-{{/each}}
+  <h3 data-ng-repeat="senator in indexVM.senators">
+    <a href="/senators/{{senator.lastName}}">{{senator.firstName}} {{senator.lastName}}</a>
+  </h3>
 </div>
 
 <!-- <h2>Write a Review</h2>

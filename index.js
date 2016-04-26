@@ -51,15 +51,15 @@ app.get("/api/senators", function(req,res){
     });
   });
 
-app.get("/api/senators/:lastName", function(req, res){
-  Senator.findOne({lastName: req.params.lastName}).then(function(senator){
+app.get("/api/senators/:name", function(req, res){
+  Senator.findOne({lastName: req.params.name}).then(function(senator){
     res.json(senator);
   });
 });
 
 // adds a review of a senator to the db
-app.post("api/senators/:lastName/reviews", function(req, res){
-  Senator.findOne({lastName: req.params.lastName}).then(function(senator){
+app.post("api/senators/:name/reviews", function(req, res){
+  Senator.findOne({lastName: req.params.name}).then(function(senator){
     senator.reviews.push(req.body.reviews);
     senator.save().then(function(senator){
       res.json(senator);
