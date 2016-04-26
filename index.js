@@ -24,6 +24,7 @@ app.engine(".hbs", hbs({
 })
 );
 app.use("/assets", express.static("public"));
+app.use("/bower", express.static("bower-components"));
 app.use(parser.urlencoded({extended: true}));
 
 //Passport authorization – removes the "req.flash is not a function" error
@@ -33,13 +34,11 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
 app.use(function (req, res, next) {
+  res.locals.isProduction = (process.env.NODE_ENV == "production");
   res.locals.currentUser = req.user;
   next();
 });
 
-app.get("/", function(req, res){
-  res.render("welcome-page");
-});
 
 app.get("/flash", function(req, res){
   req.flash("info", "Flash is back!")
@@ -165,6 +164,10 @@ app.post("/senators/:name/reviews/:index", function(req, res){
       res.redirect("/senators/" + senator.lastName);
     });
   });
+});
+
+app.get("/*", function(req, res){
+  res.sendFile(__dirname + "/views/main.html");
 });
 
 // route middleware to make sure a user is logged in

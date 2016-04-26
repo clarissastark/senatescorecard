@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <base href="/">
   <title>Senate Score'd</title>
   <link href="/assets/css/styles.css" rel="stylesheet" />
   <script src="/assets/js/app.js"></script>
@@ -11,18 +12,17 @@
   <script src="/assets/js/app.js"></script>
   <script src="/assets/js/facebook.js"></script>
 </head>
-<div data-ng-app="senatescore">
-<body>
-  <ul>
-    {{#if currentUser}}
-    <li><a href="/logout">Logout {{currentUser.local.email}}</a></li>
-    {{else}}
-    <li><a href="/login">Login</a> | <a href="/signup">Signup</a></li>
-    <li>Signup / Login with: <a href="/auth/facebook">Facebook</a> | <a href="/auth/twitter">Twitter</a> </li>
-    {{/if}}
-  </ul>
-  {{{body}}}
+<body data-ng-app="senatescore">
+  <h2><a data-ui-sref="welcome">SenateScore</a></h2>
   <main data-ui-view></main>
-</div>
+  <!-- <ul>
+  {{#if currentUser}}
+  <li><a href="/logout">Logout {{currentUser.local.email}}</a></li>
+  {{else}}
+  <li><a href="/login">Login</a> | <a href="/signup">Signup</a></li>
+  <li>Signup / Login with: <a href="/auth/facebook">Facebook</a> | <a href="/auth/twitter">Twitter</a> </li>
+  {{/if}}
+</ul> -->
+
 </body>
 </html>
