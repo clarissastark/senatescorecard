@@ -79,7 +79,7 @@ app.get("/signup", function(req, res) {
 
 // process the signup form
 app.post("/signup", passport.authenticate("local-signup", {
-  successRedirect : "/profile",
+  successRedirect : "/",
   failureRedirect : "/signup",
   failureFlash : true
 }));
@@ -97,6 +97,7 @@ app.post("/login", function(req,res){
   });
   return loginProperty(req, res);
 });
+
 app.get("/profile", isLoggedIn, function(req, res){
   res.render("profile", {
     user: req.user
