@@ -2,7 +2,6 @@ var express = require("express");
 var router = express.Router();
 var hbs = require("express-handlebars");
 var session = require("express-session");
-var cmongo = require("connect-mongo");
 var request = require("request");
 var qstring = require("qs");
 var mongoose = require("./db/connection");
