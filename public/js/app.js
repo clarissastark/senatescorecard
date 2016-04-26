@@ -9,6 +9,7 @@
   .config([
   "$stateProvider",
   "$locationProvider",
+  "$urlRouterProvider",
   Router
   ])
   .factory("Senator", [
@@ -28,7 +29,7 @@
   reviewIndexCtrl
   ]);
 
-  function Router($stateProvider, $locationProvider){
+  function Router($stateProvider, $locationProvider, $urlRouterProvider){
     // enable html5Mode for '#'-less URLs
     $locationProvider.html5Mode(true);
     $stateProvider
@@ -42,6 +43,7 @@
       controller: "senatIndexCtrl",
       controllerAs: "indexVM"
     });
+    $urlRouterProvider.otherwise("/");
   }
 
   function Senator($resource){
