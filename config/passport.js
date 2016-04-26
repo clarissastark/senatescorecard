@@ -1,5 +1,6 @@
 var LocalStrategy = require("passport-local").Strategy;
 var mongoose = require("../db/connection");
+var User = require('../models/user');
 var flash = require('connect-flash');
 
 module.exports = function(passport) {

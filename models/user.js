@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 var passport = require("passport");
 var bcrypt = require("bcrypt-nodejs");
-require('../config/passport')(passport);
+var configPassport = require('../config/passport');
 
 var UserSchema = mongoose.Schema({
     local : {
@@ -28,7 +28,6 @@ var UserSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model("User", UserSchema);
 
 // generating a hash
 UserSchema.methods.encrypt = function(password) {
@@ -39,3 +38,5 @@ UserSchema.methods.encrypt = function(password) {
 UserSchema.methods.validPassword = function(password) {
     return bcrypt.compareSync(password, this.local.password);
 };
+
+module.exports = mongoose.model("User", UserSchema);
