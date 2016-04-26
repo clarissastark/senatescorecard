@@ -29,7 +29,7 @@ app.use(parser.urlencoded({extended: true}));
 
 //Passport authorization – removes the "req.flash is not a function" error
 app.use(flash()); // use connect-flash for flash messages stored in session
-app.use(session({ secret: "purpleschmurple" })); // session secret
+app.use(session({ secret: "purpleschmurple", cookie: { secure: false } })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
@@ -135,6 +135,16 @@ passport.authenticate("facebook", {
   failureRedirect : "/"
 })
 );
+
+// route for twitter authentication and login
+app.get("/auth/twitter", passport.authenticate("twitter"));
+
+// handle the callback after twitter has authenticated the user
+app.get("/auth/twitter/callback",
+passport.authenticate("twitter", {
+  successRedirect : "/profile",
+  failureRedirect : "/"
+}));
 
 app.get("/logout", function(req, res){
   req.logout();
