@@ -7,6 +7,14 @@
   <script src="/assets/js/app.js"></script>
 </head>
 <body>
+  <ul>
+  {{#if currentUser}}
+    <li><a href="/logout">Logout {{currentUser.local.email}}</a></li>
+  {{else}}
+    <li><a href="/login">Login</a></li>
+    <li><a href="/signup">Signup</a></li>
+  {{/if}}
+</ul>
   {{{body}}}
 </body>
 </html>

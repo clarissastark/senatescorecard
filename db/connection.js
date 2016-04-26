@@ -1,4 +1,6 @@
 var mongoose = require("mongoose");
+var passport = require("passport");
+require('../config/passport')(passport);
 
 var UserSchema = mongoose.Schema({
   local : {
