@@ -7,6 +7,7 @@ var passport = require("passport");
 var session = require("express-session");
 var cookieParser = require("cookie-parser");
 var flash = require("connect-flash");
+var request = require("request");
 require("./config/passport")(passport);
 
 var app = express();
