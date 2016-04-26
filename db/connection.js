@@ -2,13 +2,6 @@ var mongoose = require("mongoose");
 var passport = require("passport");
 require('../config/passport')(passport);
 
-var UserSchema = mongoose.Schema({
-  local : {
-    email        : String,
-    password     : String,
-  }
-});
-
 var SenatorSchema = new mongoose.Schema (
   {
     firstName: String,
@@ -49,11 +42,6 @@ var SenatorSchema = new mongoose.Schema (
 );
 
 mongoose.model("Senator", SenatorSchema);
-mongoose.model("User", UserSchema);
-
-UserSchema.methods.encrypt = function(password) {
-  return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-};
 
 if(process.env.NODE_ENV == "production"){
   mongoose.connect(process.env.MONGODB_URI);
