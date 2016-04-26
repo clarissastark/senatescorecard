@@ -1,5 +1,6 @@
 var mongoose = require("mongoose");
 var passport = require("passport");
+var User = require('../models/user');
 require('../config/passport')(passport);
 
 var SenatorSchema = new mongoose.Schema (

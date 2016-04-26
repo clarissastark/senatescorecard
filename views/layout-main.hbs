@@ -7,14 +7,33 @@
   <script src="/assets/js/app.js"></script>
 </head>
 <body>
+  <script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1724449767833013',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+  </script>
   <ul>
-  {{#if currentUser}}
+    {{#if currentUser}}
     <li><a href="/logout">Logout {{currentUser.local.email}}</a></li>
-  {{else}}
-    <li><a href="/login">Login</a></li>
-    <li><a href="/signup">Signup</a></li>
-  {{/if}}
-</ul>
+    {{else}}
+    <li><a href="/login">Login</a> | <a href="/signup">Signup</a></li>
+    <li>Signup / Login with: <a href="/auth/facebook">Facebook</a></li>
+    {{/if}}
+  </ul>
+  <h2><a href="/senators">Senate Scorecard</a></h2>
   {{{body}}}
+
 </body>
 </html>
