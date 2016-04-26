@@ -1,7 +1,18 @@
 var LocalStrategy   = require('passport-local').Strategy;
 var mongoose = require("./db/connection");
 
-module.exports = function(passport){
+module.exports = function(passport) {
+
+  passport.serializeUser(function(user, callback) {
+    callback(null, user.id);
+  });
+
+  passport.deserializeUser(function(id, callback) {
+    User.findById(id, function(err, user) {
+        callback(err, user);
+    });
+  });
+  
   passport.use('local-signup', new LocalStrategy({
     usernameField : 'email',
     passwordField : 'password',

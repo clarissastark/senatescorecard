@@ -3,11 +3,12 @@ var hbs = require("express-handlebars");
 var mongoose = require("./db/connection");
 var parser = require("body-parser");
 var passport = require("passport");
+var session = require("express-session");
+var cookieParser = require("cookie-parser");
 
 var app = express();
 
 var Senator = mongoose.model("Senator");
-var UserReview = mongoose.model("UserReview");
 
 app.set("port", process.env.PORT || 3001);
 app.set("view engine", "hbs");
@@ -49,6 +50,18 @@ app.post("/senators/:lastName/reviews", function(req, res){
     senator.save().then(function(){
       res.redirect("/senators/" + senator.lastName);
     });
+  });
+});
+
+app.get("/login", function(req, res) {
+  var signupStrategy = passport.authenticate('local-signup', {
+    successRedirect : '/',
+    failureRedirect : '/signup',
+    failureFlash : true
+  });
+  return signupStrategy(request, response);
+  res.render("login", {
+    senators: senators
   });
 });
 

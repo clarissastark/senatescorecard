@@ -1,12 +1,5 @@
 var mongoose = require("mongoose");
 
-var UserReviewSchema = new mongoose.Schema (
-  {
-    body: String
-    // date: Date
-  }
-);
-
 var UserSchema = mongoose.Schema({
   local : {
     email        : String,
@@ -54,7 +47,6 @@ var SenatorSchema = new mongoose.Schema (
 );
 
 mongoose.model("Senator", SenatorSchema);
-mongoose.model("UserReview", UserReviewSchema);
 mongoose.model("User", UserSchema);
 
 UserSchema.methods.encrypt = function(password) {
