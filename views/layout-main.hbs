@@ -5,20 +5,24 @@
   <title>Senate Score'd</title>
   <link href="/assets/css/styles.css" rel="stylesheet" />
   <script src="/assets/js/app.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular-resource.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.min.js"></script>
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/facebook.js"></script>
 </head>
+<div data-ng-app="senatescore">
 <body>
   <ul>
     {{#if currentUser}}
     <li><a href="/logout">Logout {{currentUser.local.email}}</a></li>
     {{else}}
     <li><a href="/login">Login</a> | <a href="/signup">Signup</a></li>
-    <li>Signup / Login with: <a href="/auth/facebook">Facebook</a> | <a href="/auth/twitter" >Twitter</a></li>
-
-
+    <li>Signup / Login with: <a href="/auth/facebook">Facebook</a> | <a href="/auth/twitter">Twitter</a> </li>
     {{/if}}
   </ul>
-  <h2><a href="/senators">Senate Scorecard</a></h2>
   {{{body}}}
-
+  <main data-ui-view></main>
+</div>
 </body>
 </html>
