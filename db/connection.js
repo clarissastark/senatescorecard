@@ -1,11 +1,7 @@
 var mongoose = require("mongoose");
-
-var UserReviewSchema = new mongoose.Schema (
-  {
-    body: String
-    // date: Date
-  }
-);
+var passport = require("passport");
+var User = require('../models/user');
+require('../config/passport')(passport);
 
 var SenatorSchema = new mongoose.Schema (
   {
@@ -47,7 +43,6 @@ var SenatorSchema = new mongoose.Schema (
 );
 
 mongoose.model("Senator", SenatorSchema);
-mongoose.model("UserReview", UserReviewSchema);
 
 if(process.env.NODE_ENV == "production"){
   mongoose.connect(process.env.MONGODB_URI);

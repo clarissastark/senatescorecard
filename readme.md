@@ -9,7 +9,7 @@ The politicians and quotes feed into a quiz that pulls a random quote and politi
 Clone this repository to your local computer, run npm install, and then **npm start** in your CLI to access a version of the site.
 
 **Technologies Used**
-*THIS APP* is a Ruby on Rails application that uses postgresql as the database. I utilized bootstrap for most of the CSS.
+*THIS APP* is a MEAN stack app. I utilized bootstrap for most of the CSS.
 
 **Approach Taken**
 
