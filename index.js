@@ -1,43 +1,21 @@
 var express = require("express");
 var router = express.Router();
 var hbs = require("express-handlebars");
-var session = require("express-session");
-var cmongo = require("connect-mongo");
-var request = require("request");
-var qstring = require("qs");
 var mongoose = require("./db/connection");
 var parser = require("body-parser");
-<<<<<<< HEAD
-var env = require("./env");
-=======
 var passport = require("passport");
 var session = require("express-session");
 var cookieParser = require("cookie-parser");
 var flash = require("connect-flash");
 require("./config/passport")(passport);
->>>>>>> d7c18c7f2a43d8c15a789bca472bd8e1e9f6f58f
 
 var app = express();
-var SMongo = cmongo(session);
 
 var Senator = mongoose.model("Senator");
 
-process.env.session_secret = env.session_secret;
-process.env.t_callback_url = env.t_callback_url;
-process.env.t_consumer_key = env.t_consumer_key;
-process.env.t_consumer_secret = env.t_consumer_secret;
-
-app.use(session({
-  secret: process.env.session_secret,
-  resave: false,
-  saveUninitialized: false,
-  store: new SMongo({
-    mongooseConnection: mongoose.connection
-  })
-}));
-
 app.set("port", process.env.PORT || 3001);
 app.set("view engine", "hbs");
+
 app.engine(".hbs", hbs({
   extname:      ".hbs",
   partialsDir:  "views/",
@@ -45,6 +23,7 @@ app.engine(".hbs", hbs({
   defaultLayout: "layout-main"
 })
 );
+
 app.use("/assets", express.static("public"));
 app.use(parser.urlencoded({extended: true}));
 
@@ -60,80 +39,13 @@ app.use(function (req, res, next) {
 });
 
 app.get("/", function(req, res){
-  res.render("app-welcome");
+  res.render("welcome-page");
 });
 
-app.get("/login/twitter", function(req, res){
-  var url = "https://api.twitter.com/oauth/request_token";
-  var oauth = {
-    callback:         process.env.t_callback_url,
-    consumer_key:     process.env.t_consumer_key,
-    consumer_secret:  process.env.t_consumer_secret
-  }
-  request.post({url: url, oauth: oauth}, function(e, response){
-    var auth_data = qstring.parse(response.body);
-    var post_data = qstring.stringify({oauth_token: auth_data.oauth_token});
-    req.session.t_oauth_token         = auth_data.oauth_token;
-    req.session.t_oauth_token_secret  = auth_data.oauth_token_secret;
-    res.redirect("https://api.twitter.com/oauth/authenticate?" + post_data);
-  });
-});
-
-app.get("/login/twitter/callback", function(req, res){
-  var url = "https://api.twitter.com/oauth/access_token";
-  var auth_data = qstring.parse(req.query);
-  var oauth = {
-    consumer_key:     process.env.t_consumer_key,
-    consumer_secret:  process.env.t_consumer_secret,
-    token:            req.session.t_oauth_token,
-    token_secret:     req.session.t_oauth_token_secret,
-    verifier:         auth_data.oauth_verifier
-  };
-  // third leg of oauth authentication
-  request.post({url: url, oauth: oauth}, function(e, response){
-    var auth_data = qstring.parse(response.body);
-    req.session.t_user_id = auth_data.user_id;
-    req.session.t_screen_name = auth_data.screen_name;
-    req.session.t_oauth = {
-      consumer_key:     process.env.t_consumer_key,
-      consumer_secret:  process.env.t_consumer_secret,
-      token:            auth_data.oauth_token,
-      token_secret:     auth_data.oauth_token_secret
-    };
-    request.get({
-      url:           "https://api.twitter.com/1.1/useres/show.json",
-      json:          true,
-      oauth:         req.session.t_oauth,
-      qs:            {
-        screen_name: req.session.t_screen_name
-      }
-    }, function(e, response){
-      res.json(response.body);
-    });
-  });
-});
-
-app.get("/apitest/:username", function(req, res){
-  request.get({
-    url:    "https://api.twitter.com/1.1/statuses/user_timeline.json",
-    json:   true,
-    oauth:  req.session.t_oauth,
-    qs:     {
-      screen_name: req.params.username,
-      count: 2
-    }
-  }, function(e, response){
-    res.json(response.body);
-  });
-});
-
-<<<<<<< HEAD
-=======
 app.get("/flash", function(req, res){
   req.flash("info", "Flash is back!")
   res.redirect("/senators");
 });
->>>>>>> d7c18c7f2a43d8c15a789bca472bd8e1e9f6f58f
 
 app.get("/senators", function(req,res){
   Senator.find({}).then(function(senators){
@@ -151,7 +63,6 @@ app.get("/senators/:lastName", function(req, res){
   });
 });
 
-// adds a review of a senator to the db
 app.post("/senators/:lastName/reviews", function(req, res){
   Senator.findOne({lastName: req.params.lastName}).then(function(senator){
     senator.reviews.push(req.body.reviews);
@@ -213,7 +124,6 @@ app.get("/profile", isLoggedIn, function(req, res){
 //
 // });
 
-
 // route for facebook authentication and login
 app.get("/auth/facebook", passport.authenticate("facebook", { scope : "email" }));
 
@@ -236,7 +146,6 @@ app.get("/logout", function(req, res){
 //   });
 // });
 
-// deletes a review of a senator from the db
 app.post("/senators/:name/reviews/:index", function(req, res){
   Senator.findOne({lastName: req.params.name}).then(function(senator){
     senator.reviews.splice(req.params.index, 1);
@@ -253,6 +162,7 @@ function isLoggedIn(req, res, next) {
   res.redirect("/");
 }
 
+//
 function authenticatedUser(req, res, next) {
   if (req.isAuthenticated()) return next();
   res.redirect("/");
