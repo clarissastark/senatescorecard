@@ -45,28 +45,34 @@ app.get("/flash", function(req, res){
   res.redirect("/senators");
 });
 
-app.get("/senators", function(req,res){
+app.get("/api/senators", function(req,res){
   Senator.find({}).then(function(senators){
-    res.render("senators-index", {
-      senators: senators
+    res.json(senators);
     });
   });
-});
 
-app.get("/senators/:lastName", function(req, res){
+app.get("/api/senators/:lastName", function(req, res){
   Senator.findOne({lastName: req.params.lastName}).then(function(senator){
-    res.render("senators-show", {
-      senator: senator
-    });
+    res.json(senator);
   });
 });
 
 // adds a review of a senator to the db
-app.post("/senators/:lastName/reviews", function(req, res){
+app.post("api/senators/:lastName/reviews", function(req, res){
   Senator.findOne({lastName: req.params.lastName}).then(function(senator){
     senator.reviews.push(req.body.reviews);
-    senator.save().then(function(){
-      res.redirect("/senators/" + senator.lastName);
+    senator.save().then(function(senator){
+      res.json(senator);
+    });
+  });
+});
+
+// deletes a review of a senator from the db
+app.delete("/api/senators/:name/reviews/:index", function(req, res){
+  Senator.findOne({lastName: req.params.name}).then(function(senator){
+    senator.reviews.splice(req.params.index, 1);
+    senator.save().then(function(senator){
+      res.json(senator);
     });
   });
 });
@@ -74,7 +80,6 @@ app.post("/senators/:lastName/reviews", function(req, res){
 app.get("/signup", function(req, res) {
   res.render("signup", { message: req.flash("signupMessage") });
 });
-
 
 // process the signup form
 app.post("/signup", passport.authenticate("local-signup", {
@@ -102,6 +107,7 @@ app.get("/profile", isLoggedIn, function(req, res){
     user: req.user
   });
 });
+
 
 // stackoverflow Facebook login error solution code:
 // app.post("/login", function(req,res, next){
@@ -150,21 +156,13 @@ app.get("/logout", function(req, res){
   res.redirect("/");
 });
 
+
 // app.post("/senators/:lastName/reviews", function(req,res){
 //   Senator.findOneAndUpdate({name: req.params.name}, req.body.senator.review, {new: true}).then(function(senator){
 //     res.redirect("/senators/" + senator.lastName);
 //   });
 // });
 
-// deletes a review of a senator from the db
-app.post("/senators/:name/reviews/:index", function(req, res){
-  Senator.findOne({lastName: req.params.name}).then(function(senator){
-    senator.reviews.splice(req.params.index, 1);
-    senator.save().then(function(){
-      res.redirect("/senators/" + senator.lastName);
-    });
-  });
-});
 
 app.get("/*", function(req, res){
   res.sendFile(__dirname + "/views/main.html");
