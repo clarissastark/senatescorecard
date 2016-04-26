@@ -11,7 +11,6 @@ var request = require("request");
 require("./config/passport")(passport);
 
 var app = express();
-var SMongo = cmongo(session);
 
 var Senator = mongoose.model("Senator");
 
