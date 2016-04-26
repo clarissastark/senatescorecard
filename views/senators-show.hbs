@@ -1,6 +1,13 @@
 {{#if senator}}
 <h2>Sen. {{senator.firstName}} {{senator.lastName}}</h2>
 
+<div
+  class="fb-like"
+  data-share="true"
+  data-width="450"
+  data-show-faces="true">
+</div>
+
 <h3>User Reviews</h3>
 {{#each senator.reviews as |review index|}}
 <p>{{review}}</p>
