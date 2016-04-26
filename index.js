@@ -2,6 +2,8 @@ var express = require("express");
 var hbs = require("express-handlebars");
 var session = require("express-session");
 var cmongo = require("connect-mongo");
+var request = require("request");
+var qstring = require("qs");
 var mongoose = require("./db/connection");
 var parser = require("body-parser");
 var env = require("./env");
@@ -39,6 +41,22 @@ app.engine(".hbs", hbs({
 
 app.use("/assets", express.static("public"));
 app.use(parser.urlencoded({extended: true}));
+
+app.get("/login/twitter", function(req, res){
+  var url = "https://api.twitter.com/oauth/request_token";
+  var oauth = {
+    callback:         process.env.t_callback_url,
+    consumer_key:     process.env.t_consumer_key,
+    consumer_secret:  process.env.t_consumer_secret
+  };
+  request.post({url: url, oauth: oauth}, function(e, response){
+    var auth_data = qstring.parse(response.body);
+    var post_data = qstring.stringify({oauth_token: auth_data.oauth_token});
+    req.session.t_oauth_token = auth_data.oauth_token;
+    req.session.t_oauth_token_secret = auth_data.oauth_token_secret;
+    res.redirect("https://api.twitter.com/oauth/authenticate?" + post_data);
+  });
+});
 
 app.get("/", function(req, res){
   res.render("welcome-page");
