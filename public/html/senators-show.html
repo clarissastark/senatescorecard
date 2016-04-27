@@ -6,76 +6,43 @@
     <p>{{review}}</p>
   </div>
 
-  <!-- <div>
-  class="fb-like"
-  data-share="true"
-  data-width="450"
-  data-show-faces="true"
-</div> -->
-
-<div class="senator-show" data-grumble="showVM.senator">
-</div>
-
-
-<textarea type="text" placeholder="Add your review here" data-ng-model="showVM.senator.reviews" /></textarea>
-<button type="submit">Add a review</button>
-
-
-
-<h3>LCV Score</h3>
-
-<p>2015 Score: {{showVM.senator.score2015}}%</p>
-<p>Lifetime Score: {{showVM.senator.scoreLifetime}}%</p>
-
-<h3>Environmental Votes</h3>
-
-<!-- <p>Limiting Access to the Courts: {{showVM.senator."Limiting Access to the Courts (7)"}}</p>
-<p>Attack on Clean Air Protections: {{showVM.senator."Attack on Clean Air Protections (9)"}}</p>
-<p>Climate Change Science: {{showVM.senator."Climate Change Science (12)"}}</p>
-<p>Prioritizing Drilling on Public Lands: {{showVM.senator."Prioritizing Drilling on Public Lands (17)"}}</p>
-<p>Forcing Tar Sands Polluters to Pay for Spills: {{showVM.senator."Forcing Tar Sands Polluters to Pay for Spills (19)"}}</p> -->
-
-</div>
-
-<h2>Write a Review</h2>
-<form method="post">
-  <textarea name="reviews"></textarea>
+  <textarea type="text" placeholder="Add your review here" data-ng-model="showVM.senator.reviews" /></textarea>
   <button type="submit">Add a review</button>
-</form>
 
 
+  <h3>LCV Score</h3>
 
+  <p>2015 Score: {{showVM.senator.score2015}}%</p>
+  <p>Lifetime Score: {{showVM.senator.scoreLifetime}}%</p>
 
+  <h3>Environmental Votes</h3>
+  <p>Limiting Access to the Courts: {{showVM.senator["Limiting Access to the Courts (7)"]}}</p>
+  <p>Attack on Clean Air Protections: {{showVM.senator["Attack on Clean Air Protections (9)"]}}</p>
+  <p>Climate Change Science: {{showVM.senator["Climate Change Science (12)"]}}</p>
+  <p>Prioritizing Drilling on Public Lands: {{showVM.senator["Prioritizing Drilling on Public Lands (17)"]}}</p>
+  <p>Forcing Tar Sands Polluters to Pay for Spills: {{showVM.senator["Forcing Tar Sands Polluters to Pay for Spills (19)"]}}</p>
+  <p>International Climate Action: {{showVM.senator["International Climate Action (20)"]}}</p>
+  <p>Liquefied Natural Gas: {{showVM.senator["Liquefied Natural Gas (LNG) Exports (34)"]}}</p>
+  <p>Prairie Anti-environment vote Chicken Protections: {{showVM.senator["Prairie Anti-environment vote Chicken Protections (35)"]}}</p>
+  <p>National Monuments: {{showVM.senator["National Monuments (37)"]}}</p>
+  <p>Clean Energy Tax Credits: {{showVM.senator["Clean Energy Tax Credits (40)"]}}</p>
+  <p>Fracking Drinking Water Loophole: {{showVM.senator["Fracking Drinking Water Loophole (41)"]}}</p>
+  <p>Land & Water Conservation Fund: {{showVM.senator["Land & Water Conservation Fund (LWCF) (43)"]}}</p>
+  <p>Renewable Electricity Standard: {{showVM.senator["Renewable Electricity Standard (RES) (44)"]}}</p>
+  <p>Keystone XL Tar Sands Pipeline (KXL): {{showVM.senator["Keystone XL Tar Sands Pipeline (KXL) (49)"]}}</p>
+  <p>Keystone XL Tar Sands Pipeline: {{showVM.senator["Keystone XL Tar Sands Pipeline (KXL) Veto Override (68)"]}}</p>
+  <p>Selling Off America's Public Lands: {{showVM.senator["Selling Off America's Public Lands (106)"]}}</p>
+  <p>Responding to the Threat of Climate Change: {{showVM.senator["Responding to the Threat of Climate Change (115)"]}}</p>
+  <p>Undermining Critical Habitat for Wildlife: {{showVM.senator["Undermining Critical Habitat for Wildlife (128)"]}}</p>
+  <p>InvestorAnti-environment voteState Dispute Settlement in Trade Agreements: {{showVM.senator["InvestorAnti-environment voteState Dispute Settlement in Trade Agreements (188)"]}}
+  <p>Fast Track of Trade Agreements: {{showVM.senator["Fast Track of Trade Agreements (193)"]}}</p>
+  <p>Climate Change Science Education: {{showVM.senator["Climate Change Science Education (238)"]}}</p>
+  <p>Gutting Clean Water Protections: {{showVM.senator["Gutting Clean Water Protections (295)"]}}</p>
+  <p>Extreme Assault on Clean Water Rule: {{showVM.senator["Extreme Assault on Clean Water Rule (CRA) (297)"]}}</p>
+  <p>Extreme Attack on Carbon Pollution Limits for Existing Power Plants: {{showVM.senator["Extreme Attack on Carbon Pollution Limits for Existing Power Plants (CRA) (306)"]}}
+  <p>xtreme Attack on Carbon Pollution Limits for New Power Plants: {{showVM.senator["Extreme Attack on Carbon Pollution Limits for New Power Plants (CRA) (307)"]}}
+</div>
 
-<!--
-
-"Limiting Access to the Courts (7)"
-"Attack on Clean Air Protections (9)"
-"Climate Change Science (12)"
-"Prioritizing Drilling on Public Lands (17)"
-"Forcing Tar Sands Polluters to Pay for Spills (19)"
-"International Climate Action (20)"
-"Liquefied Natural Gas (LNG)"
-"Exports (34)"
-"PrairieAnti-environment voteChicken Protections (35)"
-"National Monuments (37)"
-"Clean Energy Tax Credits (40)"
-"Fracking Drinking Water Loophole (41)"
-"Land & Water Conservation Fund (LWCF) (43)"
-"Renewable Electricity Standard (RES) (44)"
-"Keystone XL Tar Sands Pipeline (KXL) (49)"
-"Keystone XL Tar Sands Pipeline (KXL)"
-"Veto Override (68)"
-"Selling Off America's Public Lands (106)"
-"Responding to the Threat of Climate Change (115)"
-"Undermining Critical Habitat for Wildlife (128)"
-"InvestorAnti-environment voteState Dispute Settlement in Trade Agreements (188)"
-"Fast Track of Trade Agreements (193)"
-"Climate Change Science Education (238)"
-"Gutting Clean Water Protections (295)"
-"Extreme Assault on Clean Water Rule (CRA) (297)"
-"Extreme Attack on Carbon Pollution Limits for Existing Power Plants (CRA) (306)"
-"Extreme Attack on Carbon Pollution Limits for New Power Plants (CRA) (307)" -->
 <div data-ng-if="!showVM.senator">
   <h2>That senator couldn't be found!</h2>
 </div>
