@@ -27,7 +27,12 @@
   .controller("reviewIndexCtrl", [
   "UserReview",
   reviewIndexCtrl
-  ]);
+  ])
+  .controller("senatShowCtrl", [
+    "Senator",
+    "$stateParams",
+    senatShowCtrl
+  ])
 
   function Router($stateProvider, $locationProvider, $urlRouterProvider){
     // enable html5Mode for '#'-less URLs
@@ -42,6 +47,12 @@
       templateUrl: "/assets/html/senators-index.html",
       controller: "senatIndexCtrl",
       controllerAs: "indexVM"
+    })
+    .state("show", {
+      url: "/senators/:name",
+      templateUrl: "/assets/html/senators-show.html",
+      controller: "senatShowCtrl",
+      controllerAs: "showVM"
     });
     $urlRouterProvider.otherwise("/");
   }
@@ -51,6 +62,14 @@
       update: {method: "PUT"}
     });
     Senator.all = Senator.query();
+    // loads all Senators when the Senator factory is loaded and prevents needing to replace a senator in the Senator.all array when making updates
+    Senator.find = function(property, value, callback){
+      Senator.all.$promise.then(function(){
+        Senator.all.forEach(function(senator){
+          if(senator[property] == value) callback(senator);
+        });
+      });
+    };
     return Senator;
   }
 
@@ -70,6 +89,13 @@
   function reviewIndexCtrl(UserReview){
     var vm = this;
     vm.userReviews = UserReview.all;
+  }
+
+  function senatShowCtrl(Senator, $stateParams){
+    var vm = this;
+    Senator.find("lastName", $stateParams.name, function(senator){
+      vm.senator = senator;
+    })
   }
 }());
 

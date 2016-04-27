@@ -1,0 +1,81 @@
+<div data-ng-if="showVM.senator">
+  <h2>Sen. {{senator.firstName}} {{showVM.senator.lastName}}</h2>
+
+  <h3>User Reviews</h3>
+  <div data-ng-repeat="review in showVM.senator.reviews">
+    <p>{{review}}</p>
+  </div>
+
+  <!-- <div>
+  class="fb-like"
+  data-share="true"
+  data-width="450"
+  data-show-faces="true"
+</div> -->
+
+<div class="senator-show" data-grumble="showVM.senator">
+</div>
+
+
+<textarea type="text" placeholder="Add your review here" data-ng-model="showVM.senator.reviews" /></textarea>
+<button type="submit">Add a review</button>
+
+
+
+<h3>LCV Score</h3>
+
+<p>2015 Score: {{showVM.senator.score2015}}%</p>
+<p>Lifetime Score: {{showVM.senator.scoreLifetime}}%</p>
+
+<h3>Environmental Votes</h3>
+
+<!-- <p>Limiting Access to the Courts: {{showVM.senator."Limiting Access to the Courts (7)"}}</p>
+<p>Attack on Clean Air Protections: {{showVM.senator."Attack on Clean Air Protections (9)"}}</p>
+<p>Climate Change Science: {{showVM.senator."Climate Change Science (12)"}}</p>
+<p>Prioritizing Drilling on Public Lands: {{showVM.senator."Prioritizing Drilling on Public Lands (17)"}}</p>
+<p>Forcing Tar Sands Polluters to Pay for Spills: {{showVM.senator."Forcing Tar Sands Polluters to Pay for Spills (19)"}}</p> -->
+
+</div>
+
+<h2>Write a Review</h2>
+<form method="post">
+  <textarea name="reviews"></textarea>
+  <button type="submit">Add a review</button>
+</form>
+
+
+
+
+
+<!--
+
+"Limiting Access to the Courts (7)"
+"Attack on Clean Air Protections (9)"
+"Climate Change Science (12)"
+"Prioritizing Drilling on Public Lands (17)"
+"Forcing Tar Sands Polluters to Pay for Spills (19)"
+"International Climate Action (20)"
+"Liquefied Natural Gas (LNG)"
+"Exports (34)"
+"PrairieAnti-environment voteChicken Protections (35)"
+"National Monuments (37)"
+"Clean Energy Tax Credits (40)"
+"Fracking Drinking Water Loophole (41)"
+"Land & Water Conservation Fund (LWCF) (43)"
+"Renewable Electricity Standard (RES) (44)"
+"Keystone XL Tar Sands Pipeline (KXL) (49)"
+"Keystone XL Tar Sands Pipeline (KXL)"
+"Veto Override (68)"
+"Selling Off America's Public Lands (106)"
+"Responding to the Threat of Climate Change (115)"
+"Undermining Critical Habitat for Wildlife (128)"
+"InvestorAnti-environment voteState Dispute Settlement in Trade Agreements (188)"
+"Fast Track of Trade Agreements (193)"
+"Climate Change Science Education (238)"
+"Gutting Clean Water Protections (295)"
+"Extreme Assault on Clean Water Rule (CRA) (297)"
+"Extreme Attack on Carbon Pollution Limits for Existing Power Plants (CRA) (306)"
+"Extreme Attack on Carbon Pollution Limits for New Power Plants (CRA) (307)" -->
+<div data-ng-if="!showVM.senator">
+  <h2>That senator couldn't be found!</h2>
+</div>

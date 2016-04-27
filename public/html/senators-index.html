@@ -1,25 +1,23 @@
-<div data-ng-app="senatescore">
-  <h2><a data-ui-sref="index">Senate Scorecard</a></h2>
+<h2>There are {{indexVM.senators.length}} senators in the database</h2>
 
-  <h2>There are {{indexVM.senators.length}} senators in the database</h2>
+<input type="text" placeholder="Filter on..." data-ng-model="vm.filter_on" />
 
-  <h3 data-ng-repeat="senator in indexVM.senators">
-    <a href="/senators/{{senator.lastName}}">{{senator.firstName}} {{senator.lastName}}</a>
-  </h3>
-</div>
+<h3 data-ng-repeat="senator in indexVM.senators">
+  <a href="/senators/{{senator.lastName}}">{{senator.firstName}} {{senator.lastName}}</a>
+</h3>
 
 <!-- <h2>Write a Review</h2>
 <form action="/senators" method="post">
-  <label>Senator:</label>
-  <select name="senator[lastName]">
-    {{#each senators as |senator|}}
-    <option value="{{senator.lastName}}">{{senator.lastName}}</option>
-    {{/each}}
-  </select>
-  <label>Review:</label>
-  <textarea type="text" name="senator[userReview][body]]" value="UserReview[body]" placeholder="Write your review here..."></textarea>
-  <label>Date:</label>
-  <input type="date" value="senator[userReview][date]" />
-  <button type="submit">Add A Review</button>
+<label>Senator:</label>
+<select name="senator[lastName]">
+{{#each senators as |senator|}}
+<option value="{{senator.lastName}}">{{senator.lastName}}</option>
+{{/each}}
+</select>
+<label>Review:</label>
+<textarea type="text" name="senator[userReview][body]]" value="UserReview[body]" placeholder="Write your review here..."></textarea>
+<label>Date:</label>
+<input type="date" value="senator[userReview][date]" />
+<button type="submit">Add A Review</button>
 </form> -->
 </div>

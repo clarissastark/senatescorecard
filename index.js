@@ -45,6 +45,15 @@ app.get("/flash", function(req, res){
   res.redirect("/senators");
 });
 
+// app.get("/api/senators", function(req, res){
+//   Senator.find({}).lean().exec().then(function(senators){
+//     senators.forEach(function(senator){
+//       senator.isCurrentUser = (senator._id == req.session.senator_id);
+//     });
+//     res.json(senators);
+//   });
+// });
+
 app.get("/api/senators", function(req,res){
   Senator.find({}).then(function(senators){
     res.json(senators);
@@ -155,7 +164,6 @@ app.get("/logout", function(req, res){
   req.logout();
   res.redirect("/");
 });
-
 
 // app.post("/senators/:lastName/reviews", function(req,res){
 //   Senator.findOneAndUpdate({name: req.params.name}, req.body.senator.review, {new: true}).then(function(senator){
