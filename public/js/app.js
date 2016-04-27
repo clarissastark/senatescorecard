@@ -27,7 +27,7 @@
     senatShowCtrl
   ])
   .controller("loginCtrl", [
-    "$scope", 
+    "$scope",
     "$rootScope",
     "$http",
     "$location",
@@ -174,6 +174,9 @@
       });
     };
   };
+
+  // function signupCtrl()
+
 }());
 
 console.log("JavaScript is werking!");

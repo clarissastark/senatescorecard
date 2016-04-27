@@ -24,6 +24,7 @@ app.use(parser.json({extended: true}));
 //Passport authorization – removes the "req.flash is not a function" error
 app.use(flash()); // use connect-flash for flash messages stored in session
 app.use(session({ secret: "purpleschmurple", cookie: { secure: false } })); // session secret
+//app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
@@ -53,6 +54,7 @@ app.get("/api/senators", function(req,res){
   });
 });
 
+
 app.put("/api/senators", function(req,res){
   Senator.update(req.body.senator).then(function(senator){
     senator.save().then(function(senator){
@@ -67,7 +69,7 @@ app.put("/api/senators/:name", function(req,res){
   });
 });
 
-app.post("/api/senators/:name/review", function(req, res){
+app.post("/api/senators/:name", function(req, res){
   Senator.findOne({lastName: req.params.name}).then(function(senator){
     senator.save().then(function(senator){
       res.json(senator);
@@ -89,6 +91,7 @@ app.post("/api/senators/:name/review", function(req, res){
 
 app.get("/", function(app,passport,req,res,next){
   res.send('respond with a resource');
+
 });
 
 app.get("/signup", function(req, res) {
@@ -189,11 +192,28 @@ app.post("/logout", function(req, res){
 //
 // });
 
+// route for facebook authentication and login
+app.get("/auth/facebook", passport.authenticate("facebook", { scope : "email" }));
+
+// handle the callback after facebook has authenticated the user
+app.get("/auth/facebook/callback",
+passport.authenticate("facebook", {
+  successRedirect : "/profile",
+  failureRedirect : "/"
+})
+);
+
+app.get("/logout", function(req, res){
+  req.logout();
+  res.redirect("/");
+});
+
 // app.post("/senators/:lastName/reviews", function(req,res){
 //   Senator.findOneAndUpdate({name: req.params.name}, req.body.senator.review, {new: true}).then(function(senator){
 //     res.redirect("/senators/" + senator.lastName);
 //   });
 // });
+
 
 
 app.get("/*", function(req, res){
@@ -207,6 +227,7 @@ function isLoggedIn(req, res, next) {
   res.redirect("/");
 }
 
+//
 function authenticatedUser(req, res, next) {
   if (req.isAuthenticated())
   return next();
