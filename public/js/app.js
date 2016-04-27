@@ -7,26 +7,26 @@
     "ngResource"
   ])
   .config([
-  "$stateProvider",
-  "$locationProvider",
-  "$urlRouterProvider",
-  Router
+    "$stateProvider",
+    "$locationProvider",
+    "$urlRouterProvider",
+    Router
   ])
   .factory("Senator", [
-  "$resource",
-  Senator
+    "$resource",
+    Senator
   ])
   .controller("senatIndexCtrl", [
-  "Senator",
-  senatIndexCtrl
+    "Senator",
+    senatIndexCtrl
   ])
   .factory("UserReview", [
-  "$resource",
-  UserReview
+    "$resource",
+    UserReview
   ])
   .controller("reviewIndexCtrl", [
-  "UserReview",
-  reviewIndexCtrl
+    "UserReview",
+    reviewIndexCtrl
   ])
   .controller("senatShowCtrl", [
     "Senator",
@@ -62,7 +62,7 @@
       update: {method: "PUT"}
     });
     Senator.all = Senator.query();
-    // loads all Senators when the Senator factory is loaded and prevents needing to replace a senator in the Senator.all array when making updates
+    // loads all Senators when the factory loads and prevents needing to replace a senator in the Senator.all array when making updates
     Senator.find = function(property, value, callback){
       Senator.all.$promise.then(function(){
         Senator.all.forEach(function(senator){
@@ -95,9 +95,22 @@
     var vm = this;
     Senator.find("lastName", $stateParams.name, function(senator){
       vm.senator = senator;
-    })
+    });
+    vm.update = function(){
+        Senator.update({name: vm.senator.name}, {senator: vm.senator}, function(){
+        console.log("Done!");
+      });
+    };
+    vm.addReview = function(){
+      vm.senator.reviews.push(vm.newReview);
+      vm.newPosition = "";
+      vm.update();
+    };
+    vm.removeReview = function($index){
+      vm.senator.reviews.splice($index, 1);
+      vm.update();
+    };
   }
 }());
 
-
-console.log("JavaScript's working!");
+console.log("JavaScript's werking!");

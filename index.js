@@ -26,6 +26,7 @@ app.engine(".hbs", hbs({
 app.use("/assets", express.static("public"));
 app.use("/bower", express.static("bower-components"));
 app.use(parser.urlencoded({extended: true}));
+app.use(parser.json({extended: true}));
 
 //Passport authorization – removes the "req.flash is not a function" error
 app.use(flash()); // use connect-flash for flash messages stored in session
@@ -57,8 +58,9 @@ app.get("/flash", function(req, res){
 app.get("/api/senators", function(req,res){
   Senator.find({}).then(function(senators){
     res.json(senators);
-    });
   });
+});
+
 
 app.get("/api/senators/:name", function(req, res){
   Senator.findOne({lastName: req.params.name}).then(function(senator){
@@ -66,8 +68,17 @@ app.get("/api/senators/:name", function(req, res){
   });
 });
 
+app.put("/api/senators/:name", function(req,res){
+  Senator.findOneAndUpdate({lastName: req.params.name}, req.body.senator, {new: true}).then(function(senator){
+    senator.reviews.push(req.body.reviews);
+    senator.save().then(function(senator){
+      res.json(senator);
+    });
+  });
+});
+
 // adds a review of a senator to the db
-app.post("api/senators/:name/reviews", function(req, res){
+app.post("api/senators/:name", function(req, res){
   Senator.findOne({lastName: req.params.name}).then(function(senator){
     senator.reviews.push(req.body.reviews);
     senator.save().then(function(senator){

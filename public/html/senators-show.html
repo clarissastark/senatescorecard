@@ -2,13 +2,13 @@
   <h2>Sen. {{senator.firstName}} {{showVM.senator.lastName}}</h2>
 
   <h3>User Reviews</h3>
-  <div data-ng-repeat="review in showVM.senator.reviews">
+  <div data-ng-repeat="review in showVM.senator.reviews track by $index">
     <p>{{review}}</p>
+    <button data-ng-click="showVM.removeReview($index)">Delete Review</button>
   </div>
 
-  <textarea type="text" placeholder="Add your review here" data-ng-model="showVM.senator.reviews" /></textarea>
-  <button type="submit">Add a review</button>
-
+  <textarea type="text" placeholder="Add your review here" data-ng-model="showVM.newReview" /></textarea>
+  <button data-ng-click="showVM.addReview()" type="submit">Add a review</button>
 
   <h3>LCV Score</h3>
 
