@@ -20,14 +20,6 @@
     "Senator",
     senatIndexCtrl
   ])
-  .factory("UserReview", [
-    "$resource",
-    UserReview
-  ])
-  .controller("reviewIndexCtrl", [
-    "UserReview",
-    reviewIndexCtrl
-  ])
   .controller("senatShowCtrl", [
     "Senator",
     "$stateParams",
@@ -59,7 +51,11 @@
 
   function Senator($resource){
     var Senator = $resource("/api/senators/:name", {}, {
-      update: {method: "PUT"}
+      update: {method: "PUT"},
+      review: {
+        method: "POST",
+        url: "/api/candidates/:name/reviews"
+      }
     });
     Senator.all = Senator.query();
     // loads all Senators when the factory loads and prevents needing to replace a senator in the Senator.all array when making updates
@@ -76,19 +72,10 @@
   function senatIndexCtrl(Senator){
     var vm = this;
     vm.senators = Senator.all;
-  }
-
-  function UserReview($resource){
-    var UserReview = $resource("/api/senators/:name/reviews", {}, {
-      update: {method: "PUT"}
-    });
-    UserReview.all = UserReview.query();
-    return UserReview;
-  }
-
-  function reviewIndexCtrl(UserReview){
-    var vm = this;
-    vm.userReviews = UserReview.all;
+    vm.sort_data_by = function(name){
+      vm.sort_on = name;
+      vm.is_descending = !(vm.is_descending);
+    }
   }
 
   function senatShowCtrl(Senator, $stateParams){

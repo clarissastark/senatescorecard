@@ -40,7 +40,6 @@ app.use(function (req, res, next) {
   next();
 });
 
-
 app.get("/flash", function(req, res){
   req.flash("info", "Flash is back!")
   res.redirect("/senators");
@@ -61,16 +60,14 @@ app.get("/api/senators", function(req,res){
   });
 });
 
-
-app.get("/api/senators/:name", function(req, res){
-  Senator.findOne({lastName: req.params.name}).then(function(senator){
-    res.json(senator);
+app.put("/api/senators/:name", function(req,res){
+  Senator.findOneAndUpdate({lastName: req.params.name}, req.body.senator, {new: true}).then(function(senator){
+      res.json(senator);
   });
 });
 
-app.put("/api/senators/:name", function(req,res){
-  Senator.findOneAndUpdate({lastName: req.params.name}, req.body.senator, {new: true}).then(function(senator){
-    senator.reviews.push(req.body.reviews);
+app.post("/api/senators/:name/review", function(req, res){
+  Senator.findOne({lastName: req.params.name}).then(function(senator){
     senator.save().then(function(senator){
       res.json(senator);
     });
@@ -78,24 +75,15 @@ app.put("/api/senators/:name", function(req,res){
 });
 
 // adds a review of a senator to the db
-app.post("api/senators/:name", function(req, res){
-  Senator.findOne({lastName: req.params.name}).then(function(senator){
-    senator.reviews.push(req.body.reviews);
-    senator.save().then(function(senator){
-      res.json(senator);
-    });
-  });
-});
+// app.post("api/senators/:name", function(req, res){
+//   Senator.findOne({lastName: req.params.name}).then(function(senator){
+//     senator.reviews.push(req.body.reviews);
+//     senator.save().then(function(senator){
+//       res.json(senator);
+//     });
+//   });
+// });
 
-// deletes a review of a senator from the db
-app.delete("/api/senators/:name/reviews/:index", function(req, res){
-  Senator.findOne({lastName: req.params.name}).then(function(senator){
-    senator.reviews.splice(req.params.index, 1);
-    senator.save().then(function(senator){
-      res.json(senator);
-    });
-  });
-});
 
 app.get("/signup", function(req, res) {
   res.render("signup", { message: req.flash("signupMessage") });
