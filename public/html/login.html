@@ -1,8 +1,8 @@
 <h2>Login</h2>
 
-{{#if message}}
+<div data-ng-if="message">
   <div class="alert alert-danger">{{message}}</div>
-{{/if}}
+</div>
 
 <form method="post" action="/login">
   <div>

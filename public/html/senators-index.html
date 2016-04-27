@@ -4,7 +4,7 @@
 <input type="text" placeholder="Filter on..." data-ng-model="vm.filter_on" />
 
 <div data-ng-repeat="senator in indexVM.senators | filter: vm.filter_on | orderBy: vm.sort_on : vm.is_descending">
-  <a href="/senators/{{senator.lastName}}">{{senator.firstName}} {{senator.lastName}}</a>
+  <a href="/senators/{{senator.lastName}}">{{senator.firstName}} {{senator.lastName}} | {{senator.state}} | {{senator.score2015}}</a>
 </div>
 
 <!-- <h2>Write a Review</h2>

@@ -12,16 +12,18 @@
   <script src="/assets/js/facebook.js"></script>
 </head>
 <body data-ng-app="senatescore">
+  <nav>
+    <ul>
+      <div data-ng-if="currentUser">
+        <li><a href="/logout">Logout {{currentUser.local.email}}</a></li>
+      </div>
+      <div data-ng-if="!currentUser">
+        <li><a href="/login">Login</a> | <a href="/signup">Signup</a></li>
+        <li>Signup / Login with: <a href="/auth/facebook">Facebook</a> | <a href="/auth/twitter">Twitter</a> </li>
+      </div>
+    </ul>
+  </nav>
   <h2><a data-ui-sref="index">SenateScore</a></h2>
   <main data-ui-view></main>
-  <!-- <ul>
-  {{#if currentUser}}
-  <li><a href="/logout">Logout {{currentUser.local.email}}</a></li>
-  {{else}}
-  <li><a href="/login">Login</a> | <a href="/signup">Signup</a></li>
-  <li>Signup / Login with: <a href="/auth/facebook">Facebook</a> | <a href="/auth/twitter">Twitter</a> </li>
-  {{/if}}
-</ul> -->
-
 </body>
 </html>
