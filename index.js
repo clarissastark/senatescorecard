@@ -18,12 +18,12 @@ var Senator = mongoose.model("Senator");
 app.set("port", process.env.PORT || 3001);
 
 app.set("view engine", "html");
-// app.engine(".hbs", hbs({
-//   extname:        ".html",
-//   partialsDir:    "assets/html",
-//   layoutsDir:     "assets/html",
-  // defaultLayout:  "layout-main"
-// }));
+app.engine(".html", hbs({
+  extname:        ".html",
+  partialsDir:    "assets/html",
+  layoutsDir:     "assets/html",
+  defaultLayout:  "main"
+}));
 
 app.use("/assets", express.static("public"));
 app.use("/bower", express.static("bower-components"));
@@ -116,13 +116,13 @@ app.post("/signup", passport.authenticate("local-signup", {
 // });
 
 // process the login form
-app.post("/login", function(req,res){
+app.post("/login", function(req,res,next){
   var loginProperty = passport.authenticate("local-login", {
     successRedirect : "/",
     failureRedirect : "/login",
     failureFlash : true
   });
-  return loginProperty(req, res);
+  return loginProperty(req, res, next);
 });
 
 app.get("/profile", isLoggedIn, function(req, res){
@@ -226,9 +226,12 @@ app.get("/*", function(req, res){
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated())
-  return next();
-  res.redirect("/");
+  if (req.isAuthenticated()){
+    console.log('user logged in', req.user);
+    return next();
+  }else{
+    res.redirect("/");
+  }
 }
 
 //

@@ -80,7 +80,7 @@ a {
   margin-left: 5px;
 }
 
-.siteHeader__item.is-site-header-item-selected {
+.siteHeader__item.active {
   color: lighten($primaryColor, 80%);
   background-color: darken($primaryColor, 15%);
   border-radius: 4px;

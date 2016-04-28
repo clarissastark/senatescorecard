@@ -57,7 +57,7 @@ a {
 .siteHeader__item + .siteHeader__item {
   margin-left: 5px; }
 
-.siteHeader__item.is-site-header-item-selected {
+.siteHeader__item.active {
   color: white;
   background-color: #074d64;
   border-radius: 4px; }
