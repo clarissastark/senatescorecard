@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "angular-route": "^1.5.5",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.0",
     "bower": "^1.7.9",

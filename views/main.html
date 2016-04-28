@@ -23,9 +23,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular-resource.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.min.js"></script>
-  <script src="/assets/js/app.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-route.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script src="/assets/js/nav.js"></script>
+  <script src="/assets/js/app.js"></script>
+  <!-- <script src="assets/js/service.js"></script> -->
 </head>
 <body data-ng-app="senatescore">
   <div class="siteHeader">
@@ -41,10 +42,12 @@
     <!-- This section gets pushed to the right side-->
     <div class="siteHeader__section">
       <div class="siteHeader__item siteHeaderButton inactive" data-ng-if="currentUser">
-        <a href="/logout">Logout {{currentUser.local.email}}</a>
+        <div ng-controller="logoutController">
+          <a data-ng-click='logout()'>Logout</a>
+        </div>
       </div>
       <div class="siteHeader__item siteHeaderButton" data-ng-if="!currentUser">
-          <a href="/login">Login</a>
+        <a href="/login">Login</a>
       </div>
     </div>
   </div>

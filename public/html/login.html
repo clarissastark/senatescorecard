@@ -1,5 +1,25 @@
+<div class="form_block ">
+  <div class="form__title">Login</div>
+  <div data-ng-show="error" class="alert alert-danger">{{errorMessage}}</div>
+  <form class="form" data-ng-submit="login()">
+    <div class="formSection">
+      <label>Username</label>
+      <input type="text" class="form-control" name="username" ng-model="loginForm.username" required>
+    </div>
+    <div class="form__label">
+      <label>Password</label>
+    </div>
+    <div class="form__input">
+        <input type="password" class="form-control" name="password" data-ng-model="loginForm.password" required>
+    </div>
+      <div>
+        <button type="submit" class="formFooter__item button" data-ng-disabled="disabled">Login</button>
+      </div>
+  </form>
+</div>
 
-  <div class="callToActionSection">
+
+  <!-- <div class="callToActionSection">
     <div class="callToAction__title">Login</div>
     <div class="callToAction__label" data-ng-if="message">
       <div class="alert alert-danger">{{message}}</div>
@@ -28,7 +48,7 @@
         </div>
       </div>
     </div>
-  </form>
+  </form> -->
 
 
 <h3>Or login with:</h3>

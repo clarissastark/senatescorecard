@@ -179,7 +179,7 @@ app.get("/logout", function(req, res){
 //   res.send(req.isAuthenticated() ? req.user : "0");
 // });
 
-app.post("/signup", function(req, res) {
+app.post("/register", function(req, res) {
   User.register(new User({ username: req.body.username }),
   req.body.password, function(err, account) {
     if (err) {
@@ -246,7 +246,7 @@ function isLoggedIn(req, res, next) {
   }
 }
 
-//
+
 function authenticatedUser(req, res, next) {
   if (req.isAuthenticated())
   return next();
