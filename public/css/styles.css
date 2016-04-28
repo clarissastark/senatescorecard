@@ -4,9 +4,6 @@ body {
 a {
   text-decoration: none; }
 
-#logo-nav {
-  width: 35px; }
-
 .centeredPrompt {
   display: flex;
   flex-direction: column;
@@ -72,7 +69,9 @@ a {
 .siteHeaderLogo {
   font-size: 20px;
   line-height: 0;
-  color: white; }
+  color: white;
+  margin-left: 5px;
+  padding: 5px 15px; }
 
 .siteHeaderButton {
   cursor: pointer;
@@ -81,7 +80,7 @@ a {
 .card {
   display: flex;
   flex-direction: column;
-  border: 1px solid #d4f2fc;
+  border: 1px solid #bcebfa;
   border-radius: 4px;
   overflow: hidden; }
 
@@ -131,7 +130,7 @@ a {
   border-radius: 0; }
 
 .cardGroup__card + .cardGroup__card {
-  border-left: 1px solid #D7DBDD; }
+  border-left: 1px solid #bcebfa; }
 
 .cardGroup__cardDescription {
   flex: 1 1 auto; }
@@ -165,7 +164,7 @@ a {
   background-color: white;
   border: 1px solid white; }
 
-.callToAction {
+.form_block {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
@@ -175,25 +174,27 @@ a {
   margin-bottom: 60px;
   box-sizing: border-box; }
 
-.callToAction__title {
+.form__title {
   font-size: 24px;
   font-weight: 400;
   color: #095f7c;
   box-sizing: border-box; }
 
-.callToAction__input {
+.form__input {
   display: block;
   padding: 8px 12px;
-  border: 1px solid white;
+  border: 1px solid #bcebfa;
   font-size: 16px;
-  width: 100%;
-  margin-bottom: 10px; }
+  width: 95%;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto; }
 
-.callToActionSection + .callToActionSection {
+.formSection + .formSection {
   border-left: none;
-  border-top: 1px dotted white; }
+  border-top: 1px dotted #0c84ac; }
 
-.callToAction__label {
+.form__label {
   display: block;
   font-size: 14px;
   font-weight: 700;
@@ -204,7 +205,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-top: 1px solid white;
+  border-top: 1px solid #bcebfa;
   padding: 10px; }
 
 .formFooter__section {
@@ -227,5 +228,13 @@ a {
     transform: rotate(0deg); }
   100% {
     transform: rotate(360deg); } }
+.img-circle {
+  width: 35px;
+  border-radius: 50%;
+  border: 1px solid #bcebfa; }
+
+.img-circle:hover {
+  background-color: #0a7194;
+  border-radius: 50%; }
 
 /*# sourceMappingURL=styles.css.map */
