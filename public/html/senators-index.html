@@ -1,0 +1,24 @@
+<h2>There are {{indexVM.senators.length}} senators in the database</h2>
+
+<main data-ng-controller="senatIndexCtrl as vm">
+<input type="text" placeholder="Filter on..." data-ng-model="vm.filter_on" />
+
+<div data-ng-repeat="senator in indexVM.senators | filter: vm.filter_on | orderBy: vm.sort_on : vm.is_descending">
+  <a href="/senators/{{senator.lastName}}">{{senator.firstName}} {{senator.lastName}} | {{senator.state}} | {{senator.score2015}}</a>
+</div>
+
+<!-- <h2>Write a Review</h2>
+<form action="/senators" method="post">
+<label>Senator:</label>
+<select name="senator[lastName]">
+{{#each senators as |senator|}}
+<option value="{{senator.lastName}}">{{senator.lastName}}</option>
+{{/each}}
+</select>
+<label>Review:</label>
+<textarea type="text" name="senator[userReview][body]]" value="UserReview[body]" placeholder="Write your review here..."></textarea>
+<label>Date:</label>
+<input type="date" value="senator[userReview][date]" />
+<button type="submit">Add A Review</button>
+</form> -->
+</div>

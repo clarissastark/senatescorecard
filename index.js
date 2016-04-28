@@ -15,30 +15,23 @@ var app = express();
 var Senator = mongoose.model("Senator");
 
 app.set("port", process.env.PORT || 3001);
-app.set("view engine", "hbs");
-app.engine(".hbs", hbs({
-  extname:      ".hbs",
-  partialsDir:  "views/",
-  layoutsDir:   "views/",
-  defaultLayout: "layout-main"
-})
-);
+
 app.use("/assets", express.static("public"));
+app.use("/bower", express.static("bower-components"));
 app.use(parser.urlencoded({extended: true}));
+app.use(parser.json({extended: true}));
 
 //Passport authorization – removes the "req.flash is not a function" error
 app.use(flash()); // use connect-flash for flash messages stored in session
 app.use(session({ secret: "purpleschmurple", cookie: { secure: false } })); // session secret
+//app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
 app.use(function (req, res, next) {
+  res.locals.isProduction = (process.env.NODE_ENV == "production");
   res.locals.currentUser = req.user;
   next();
-});
-
-app.get("/", function(req, res){
-  res.render("welcome-page");
 });
 
 app.get("/flash", function(req, res){
@@ -46,36 +39,64 @@ app.get("/flash", function(req, res){
   res.redirect("/senators");
 });
 
-app.get("/senators", function(req,res){
+// app.get("/api/senators", function(req, res){
+//   Senator.find({}).lean().exec().then(function(senators){
+//     senators.forEach(function(senator){
+//       senator.isCurrentUser = (senator._id == req.session.senator_id);
+//     });
+//     res.json(senators);
+//   });
+// });
+
+app.get("/api/senators", function(req,res){
   Senator.find({}).then(function(senators){
-    res.render("senators-index", {
-      senators: senators
+    res.json(senators);
+  });
+});
+
+
+app.put("/api/senators", function(req,res){
+  Senator.update(req.body.senator).then(function(senator){
+    senator.save().then(function(senator){
+      res.json(senator);
     });
   });
 });
 
-app.get("/senators/:lastName", function(req, res){
-  Senator.findOne({lastName: req.params.lastName}).then(function(senator){
-    res.render("senators-show", {
-      senator: senator
+app.put("/api/senators/:name", function(req,res){
+  Senator.findOneAndUpdate({lastName: req.params.name}, req.body.senator, {new: true}).then(function(senator){
+    res.json(senator);
+  });
+});
+
+app.post("/api/senators/:name", function(req, res){
+  Senator.findOne({lastName: req.params.name}).then(function(senator){
+    senator.save().then(function(senator){
+      res.json(senator);
     });
   });
 });
 
 // adds a review of a senator to the db
-app.post("/senators/:lastName/reviews", function(req, res){
-  Senator.findOne({lastName: req.params.lastName}).then(function(senator){
-    senator.reviews.push(req.body.reviews);
-    senator.save().then(function(){
-      res.redirect("/senators/" + senator.lastName);
-    });
-  });
+// app.post("api/senators/:name", function(req, res){
+//   Senator.findOne({lastName: req.params.name}).then(function(senator){
+//     senator.reviews.push(req.body.reviews);
+//     senator.save().then(function(senator){
+//       res.json(senator);
+//     });
+//   });
+// });
+
+//======== EXPRESS USER SIGNUP/LOGIN ======//
+
+app.get("/", function(app,passport,req,res,next){
+  res.send('respond with a resource');
+
 });
 
 app.get("/signup", function(req, res) {
-  res.render("signup", { message: req.flash("signupMessage") });
+  res.render("signup.html", { message: req.flash("signupMessage") });
 });
-
 
 // process the signup form
 app.post("/signup", passport.authenticate("local-signup", {
@@ -85,7 +106,7 @@ app.post("/signup", passport.authenticate("local-signup", {
 }));
 
 app.get("/login", function(req, res){
-  res.render("login", { message: req.flash("loginMessage") });
+  res.render("login.html", { message: req.flash("loginMessage") });
 });
 
 // process the login form
@@ -103,27 +124,6 @@ app.get("/profile", isLoggedIn, function(req, res){
     user: req.user
   });
 });
-
-// stackoverflow Facebook login error solution code:
-// app.post("/login", function(req,res, next){
-//   passport.authenticate("local-login", {
-//     successRedirect : "/",
-//     failureRedirect : "/login",
-//     failureFlash : true
-//   }, function(err, user, info){
-//     if (err) {
-//     return next(err); // will generate a 500 error
-//     }
-//     // Generate a JSON response reflecting authentication status
-//     if (! user) {
-//     return res.send({ success : false, message : "authentication failed" });
-// }
-// return res.send({ success : true, message : "authentication succeeded" });
-// })(req, res, next);
-//   });
-//
-// });
-
 
 // route for facebook authentication and login
 app.get("/auth/facebook", passport.authenticate("facebook", { scope : "email" }));
@@ -151,20 +151,73 @@ app.get("/logout", function(req, res){
   res.redirect("/");
 });
 
+//======== ANGULAR USER SIGNUP/LOGIN  ======//
+
+app.get("/users", isLoggedIn, function(req,res){
+  User.findOne({email: req.params.name}).then(function(user){
+    res.send(user)
+  });
+});
+
+// route to test if the user is logged in or not
+app.get("/loggedin", function(req, res) {
+  res.send(req.isAuthenticated() ? req.user : "0");
+});
+// route to log in
+app.post("/login", passport.authenticate("local"), function(req, res) {
+  res.send(req.user);
+});
+// route to log out
+app.post("/logout", function(req, res){
+  req.logOut(); res.send(200);
+});
+
+// stackoverflow Facebook login error solution code:
+// app.post("/login", function(req,res, next){
+//   passport.authenticate("local-login", {
+//     successRedirect : "/",
+//     failureRedirect : "/login",
+//     failureFlash : true
+//   }, function(err, user, info){
+//     if (err) {
+//     return next(err); // will generate a 500 error
+//     }
+//     // Generate a JSON response reflecting authentication status
+//     if (! user) {
+//     return res.send({ success : false, message : "authentication failed" });
+// }
+// return res.send({ success : true, message : "authentication succeeded" });
+// })(req, res, next);
+//   });
+//
+// });
+
+// route for facebook authentication and login
+app.get("/auth/facebook", passport.authenticate("facebook", { scope : "email" }));
+
+// handle the callback after facebook has authenticated the user
+app.get("/auth/facebook/callback",
+passport.authenticate("facebook", {
+  successRedirect : "/profile",
+  failureRedirect : "/"
+})
+);
+
+app.get("/logout", function(req, res){
+  req.logout();
+  res.redirect("/");
+});
+
 // app.post("/senators/:lastName/reviews", function(req,res){
 //   Senator.findOneAndUpdate({name: req.params.name}, req.body.senator.review, {new: true}).then(function(senator){
 //     res.redirect("/senators/" + senator.lastName);
 //   });
 // });
 
-// deletes a review of a senator from the db
-app.post("/senators/:name/reviews/:index", function(req, res){
-  Senator.findOne({lastName: req.params.name}).then(function(senator){
-    senator.reviews.splice(req.params.index, 1);
-    senator.save().then(function(){
-      res.redirect("/senators/" + senator.lastName);
-    });
-  });
+
+
+app.get("/*", function(req, res){
+  res.sendFile(__dirname + "/views/main.html");
 });
 
 // route middleware to make sure a user is logged in
@@ -174,8 +227,10 @@ function isLoggedIn(req, res, next) {
   res.redirect("/");
 }
 
+//
 function authenticatedUser(req, res, next) {
-  if (req.isAuthenticated()) return next();
+  if (req.isAuthenticated())
+  return next();
   res.redirect("/");
 }
 

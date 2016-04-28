@@ -1,0 +1,19 @@
+<h2>Login</h2>
+
+<div data-ng-if="message">
+  <div class="alert alert-danger">{{message}}</div>
+</div>
+
+<form method="post" action="/login">
+  <div>
+    <label for="email">Email</label>
+    <input type="text" name="email" id="email">
+  </div>
+
+  <div>
+    <label for="email">Password</label>
+    <input type="password" name="password" id="password">
+  </div>
+
+  <input type="submit">
+</form>

@@ -1,0 +1,23 @@
++{
+   "name": "senatescore",
+   "description": "",
+   "main": "index.js",
+   "authors": [
+     ""
+   ],
+   "license": "ISC",
+   "homepage": "",
+   "ignore": [
+     "**/.*",
+     "node_modules",
+     "bower_components",
+     "test",
+     "tests"
+   ],
+   "dependencies": {
+     "angular-ui-router": "ui-router#^0.2.18",
+     "angular-resource": "^1.5.3",
+     "bootstrap": "^3.3.6",
+     "angular": "~1.5.3"
+   }
+ }
