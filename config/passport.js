@@ -30,9 +30,8 @@ module.exports = function(passport) {
     // User.findOne wont fire unless data is sent back
     process.nextTick(function() {
       // Find a user with this e-mail
-      User.findOne({ "local.email" :  email }, function(err, user) {
+        User.findOne({ "local.email" :  email }, function(err, user) {
         if (err) return callback(err);
-
         // If there already is a user with this email
         if (user) {
           return callback(null, false, req.flash("signupMessage", "This email is already used."));
@@ -58,7 +57,6 @@ module.exports = function(passport) {
     passwordField : "password",
     passReqToCallback : true
   }, function(req, email, password, callback) {
-
     User.findOne({ "local.email" :  email }, function(err, user) {
       // if there are any errors, return the error before anything else
       if (err)

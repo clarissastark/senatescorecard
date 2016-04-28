@@ -13,6 +13,21 @@
     "$httpProvider",
     Router
   ])
+  .run(function($rootScope, $http){
+    $rootScope.message = '';
+    // Logout function is available in any pages
+    $rootScope.logout = function(){
+      $rootScope.message = 'Logged out.';
+      $http.post("/logout");
+    };
+  })
+  .controller("loginCtrl", [
+    "$scope",
+    "$rootScope",
+    "$http",
+    "$location",
+    loginCtrl
+  ])
   .factory("Senator", [
     "$resource",
     Senator
@@ -25,13 +40,6 @@
     "Senator",
     "$stateParams",
     senatShowCtrl
-  ])
-  .controller("loginCtrl", [
-    "$scope",
-    "$rootScope",
-    "$http",
-    "$location",
-    loginCtrl
   ])
 
   function Router($stateProvider, $locationProvider, $urlRouterProvider, $httpProvider){
@@ -65,10 +73,10 @@
     //   controller: "signupCtrl"
     // })
     $urlRouterProvider.otherwise("/");
-    var checkLoggedin = function($q, $timeout, $http, $location, $rootScope){
+    var checkLoggedIn = function($q, $timeout, $http, $location, $rootScope){
       // Initialize a new promise
       var deferred = $q.defer(); // Make an AJAX call to check if the user is logged in
-      $http.get("/loggedin").success(function(user){
+      $http.get("/loggedIn").success(function(user){
         // Authenticated
         if (user !== "0") deferred.resolve();
         // Not Authenticated
