@@ -1,6 +1,12 @@
 body {
   font-family: Oswald, sans-serif; }
 
+a {
+  text-decoration: none; }
+
+#logo-nav {
+  width: 35px; }
+
 .centeredPrompt {
   display: flex;
   flex-direction: column;
@@ -23,7 +29,7 @@ body {
   text-align: center; }
 
 .centeredPromptDetails {
-  color: #8ddcf7;
+  color: black;
   font-size: 16px;
   margin-bottom: 10px;
   text-align: center;
@@ -75,7 +81,7 @@ body {
 .card {
   display: flex;
   flex-direction: column;
-  border: 1px solid white;
+  border: 1px solid #d4f2fc;
   border-radius: 4px;
   overflow: hidden; }
 
@@ -95,29 +101,51 @@ body {
   font-size: 12px;
   text-align: center; }
 
-.card__price {
+.card__btn {
   text-align: center;
-  color: #0fa8db;
+  color: white;
   font-size: 12px;
   font-weight: 700;
   padding: 5px 15px;
   border-top: 1px solid white;
-  background-color: #bcebfa; }
+  background-color: #db420f;
+  text-transform: uppercase; }
+
+.card__btn:hover {
+  background-color: #ac340c; }
 
 .card--fixedWidth {
-  max-width: 120px; }
+  width: 175px;
+  float: left;
+  margin: 10px 10px; }
+
+.cardGroup {
+  display: flex;
+  border: 1px solid #CAD0D2;
+  border-radius: 4px;
+  overflow: hidden; }
+
+.cardGroup__card {
+  flex: 1 1 0;
+  border: none;
+  border-radius: 0; }
+
+.cardGroup__card + .cardGroup__card {
+  border-left: 1px solid #D7DBDD; }
+
+.cardGroup__cardDescription {
+  flex: 1 1 auto; }
 
 .button {
   cursor: pointer;
   padding: 5px 15px;
   color: white;
-  background-color: #b30027;
+  background-color: #db420f;
   font-size: 12px;
-  border: 1px solid #80001c;
+  border: 1px solid #ac340c;
   border-radius: 4px; }
 
 .button > a {
-  text-decoration: none;
   color: white; }
 
 .button--addOnLeft {
@@ -129,7 +157,7 @@ body {
   border-bottom-left-radius: 0; }
 
 .button:hover {
-  background-color: #990021;
+  background-color: #942d0a;
   border-radius: 4px; }
 
 .button--clear {
