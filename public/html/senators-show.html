@@ -1,105 +1,62 @@
-
 <div data-ng-if="showVM.senator">
   <h2>Sen. {{showVM.senator.firstName}} {{showVM.senator.lastName}}</h2>
 
   <h3>LCV Score</h3>
 
-  <p>2015 Score: {{showVM.senator.score2015}}%</p>
-  <p>Lifetime Score: {{showVM.senator.scoreLifetime}}%</p>
+  <div class="chart"></div>
 
-  <h3>Environmental Votes</h3>
-  <table>
-    <thead>
-      <th>Air </th>
-      <th data-ng-click="vm.sort_data_by('name')">Clean Energy</th>
-    <th>Climate Change</th>
-
-    <th>Dirty Energy</th>
-      <p>Liquefied Natural Gas: {{showVM.senator["Liquefied Natural Gas (LNG) Exports (34)"]}}</p>
-      <p>Extreme Attack on Carbon Pollution Limits for Existing Power Plants: {{showVM.senator["Extreme Attack on Carbon Pollution Limits for Existing Power Plants (CRA) (306)"]}}</p>
-      <p>Extreme Attack on Carbon Pollution Limits for New Power Plants: {{showVM.senator["Extreme Attack on Carbon Pollution Limits for New Power Plants (CRA) (307)"]}}</p>
-
-
-
-    <th>Drilling</th>
-      <p>Prioritizing Drilling on Public Lands: {{showVM.senator["Prioritizing Drilling on Public Lands (17)"]}}</p>
-      <p>Forcing Tar Sands Polluters to Pay for Spills: {{showVM.senator["Forcing Tar Sands Polluters to Pay for Spills (19)"]}}</p>
-      <p>Keystone XL Tar Sands Pipeline (KXL): {{showVM.senator["Keystone XL Tar Sands Pipeline (KXL) (49)"]}}</p>
-    <p>Keystone XL Tar Sands Pipeline: {{showVM.senator["Keystone XL Tar Sands Pipeline (KXL) Veto Override (68)"]}}</p>
-
-    <th>Lands/Forests</th>
-
-      <p>Land & Water Conservation Fund: {{showVM.senator["Land & Water Conservation Fund (LWCF) (43)"]}}</p>
-        <p>Selling Off America's Public Lands: {{showVM.senator["Selling Off America's Public Lands (106)"]}}</p>
-
-    <th>Other</th>
-      <p>Limiting Access to the Courts: {{showVM.senator["Limiting Access to the Courts (7)"]}}</p>
-      <p>National Monuments: {{showVM.senator["National Monuments (37)"]}}</p>
-      <p>Investor Anti-environment vote in State Dispute Settlement in Trade Agreements: {{showVM.senator["InvestorAnti-environment voteState Dispute Settlement in Trade Agreements (188)"]}}</p>
-      <p>Fast Track of Trade Agreements: {{showVM.senator["Fast Track of Trade Agreements (193)"]}}</p>
-
-
-    <th>Water</th>
-        <p>Fracking Drinking Water Loophole: {{showVM.senator["Fracking Drinking Water Loophole (41)"]}}</p>
-        <p>Gutting Clean Water Protections: {{showVM.senator["Gutting Clean Water Protections (295)"]}}</p>
-        <p>Extreme Assault on Clean Water Rule: {{showVM.senator["Extreme Assault on Clean Water Rule (CRA) (297)"]}}</p>
-
-    <th>Wildlife</th>
-
-      <p>Prairie Anti-environment vote Chicken Protections: {{showVM.senator["Prairie Anti-environment vote Chicken Protections (35)"]}}</p>
-      <p>Undermining Critical Habitat for Wildlife: {{showVM.senator["Undermining Critical Habitat for Wildlife (128)"]}}</p>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          Attack on Clean Air Protections: {{showVM.senator["Attack on Clean Air Protections (9)"]}}
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <p>Climate Change Science: {{showVM.senator["Climate Change Science (12)"]}}</p>
-        </td>
-        <td>
-          <p>International Climate Action: {{showVM.senator["International Climate Action (20)"]}}</p>
-        </td>
-        <td>
-          <p>Responding to the Threat of Climate Change: {{showVM.senator["Responding to the Threat of Climate Change (115)"]}}</p>
-        </td>
-        <td>
-          <p>Climate Change Science Education: {{showVM.senator["Climate Change Science Education (238)"]}}</p>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-
-
-
-
-
-
-
-
-
-    <p>Fast Track of Trade Agreements: {{showVM.senator["Fast Track of Trade Agreements (193)"]}}</p>
-
-
-
-  </div>
-
-  <h3>User Reviews</h3>
-  <div data-ng-repeat="review in showVM.senator.reviews track by $index">
-    <div class="card card--fixedWidth">
-      <p>{{review}}</p>
-      <div class="card__btn" data-ng-click="showVM.removeReview($index)">Delete Review</div>
+  <div class="cardGroup">
+    <div class="card cardGroup__card">
+      <div class="card__description cardGroup__cardDescription">
+        <div class="fa fa-globe card__descriptionIcon fa-5x"></div>
+        <div class="card__descriptionText">2015 Score: {{showVM.senator.score2015}}%</div>
+      </div>
+    </div>
+    <div class="card cardGroup__card">
+      <div class="card__description cardGroup__cardDescription">
+        <div class="icon fa fa-globe card__descriptionIcon"></div>
+        <div class="card__descriptionText">Lifetime Score: {{showVM.senator.scoreLifetime}}%</div>
+      </div>
     </div>
   </div>
+  <!-- <table>
+  <thead>
+  <th data-ng-click="vm.sort_data_by('name')">Anti-Environment Votes</th>
+  <th>Pro-Environment Votes</th>
+  <th>Missed Votes</th>
+</thead> -->
+<!-- {{showVM.senator["Anti-environment votes"]}}
+{{showVM.senator["Pro-environment votes"]}}
+{{showVM.senator["Missed votes"]}} -->
 
+<h3>Anti-environment Votes</h3>
+<div data-ng-repeat="antiEnviroVote in showVM.senator.antiEnviroVotes">
+  <p>{{antiEnviroVote}}</p>
+</div>
+
+<h3>Pro-environment Votes</h3>
+<div data-ng-repeat="proEnviroVote in showVM.senator.proEnviroVotes">
+  <p>{{proEnviroVote}}</p>
+</div>
+
+<h3>Missed Votes</h3>
+<div data-ng-repeat="missedVotes in showVM.senator.missedVotes">
+  <p>{{missedVotes}}</p>
+</div>
+
+<h3>User Reviews</h3>
+<div data-ng-repeat="review in showVM.senator.reviews track by $index">
   <div class="card card--fixedWidth">
-    <textarea type="text" placeholder="Add your review here" data-ng-model="showVM.newReview"/></textarea>
-    <div class="card__btn" data-ng-click="showVM.addReview()" type="submit">Add a review</div>
+    <p>{{review}}</p>
+    <div class="card__btn" data-ng-click="showVM.removeReview($index)">Delete Review</div>
   </div>
+</div>
 
-  <div data-ng-if="!showVM.senator">
-    <h2>That senator couldn't be found!</h2>
-  </div>
+<!-- <div class="card card--fixedWidth">
+<textarea type="text" placeholder="Add your review here" data-ng-model="showVM.newReview"/></textarea>
+<div class="card__btn" data-ng-click="showVM.addReview()" type="submit">Add a review</div>
+</div> -->
+
+<div data-ng-if="!showVM.senator">
+  <h2>That senator couldn't be found!</h2>
+</div>

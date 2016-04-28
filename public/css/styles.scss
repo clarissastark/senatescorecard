@@ -295,6 +295,14 @@ a {
   border-radius: 50%;
 }
 
+.chart div {
+ font: 10px sans-serif;
+ background-color: $primaryColor;
+ text-align: right;
+ padding: 3px;
+ margin: 1px;
+ color: lighten($primaryColor, 80%);
+     }
 
 // section {
 //   @include linear-gradient(to top, red, orange);
