@@ -2,15 +2,6 @@
 <div data-ng-if="showVM.senator">
   <h2>Sen. {{showVM.senator.firstName}} {{showVM.senator.lastName}}</h2>
 
-  <h3>User Reviews</h3>
-  <div data-ng-repeat="review in showVM.senator.reviews track by $index">
-    <p>{{review}}</p>
-    <button data-ng-click="showVM.removeReview($index)">Delete Review</button>
-  </div>
-
-  <textarea type="text" placeholder="Add your review here" data-ng-model="showVM.newReview" /></textarea>
-  <button data-ng-click="showVM.addReview()" type="submit">Add a review</button>
-
   <h3>LCV Score</h3>
 
   <p>2015 Score: {{showVM.senator.score2015}}%</p>
@@ -19,31 +10,44 @@
   <h3>Environmental Votes</h3>
   <table>
     <thead>
-      <th>
-        Air – Votes on air pollution, including votes related to the Clean Air Act.
-      </th>
+      <th>Air </th>
+      <th data-ng-click="vm.sort_data_by('name')">Clean Energy</th>
+    <th>Climate Change</th>
 
-      <th data-ng-click="vm.sort_data_by('name')">Clean Energy – Votes on renewable energy and energy efficiency.</th>
+    <th>Dirty Energy</th>
+      <p>Liquefied Natural Gas: {{showVM.senator["Liquefied Natural Gas (LNG) Exports (34)"]}}</p>
+      <p>Extreme Attack on Carbon Pollution Limits for Existing Power Plants: {{showVM.senator["Extreme Attack on Carbon Pollution Limits for Existing Power Plants (CRA) (306)"]}}</p>
+      <p>Extreme Attack on Carbon Pollution Limits for New Power Plants: {{showVM.senator["Extreme Attack on Carbon Pollution Limits for New Power Plants (CRA) (307)"]}}</p>
 
-      <th>Climate Change – Votes directly related to global warming pollution and increasing climate resilience for communities and wildlife.</th>
 
-      <th>Dirty Energy – Votes on polluting energy sources, including conventional fossil fuels like oil, gas, and coal; non-conventional fossil fuels such as tar sands; and harmful energy subsidies for nuclear energy and fossil fuels.</th>
 
-      <th>Drilling – Votes on drilling onshore and in the waters off the nation’s coasts.</th>
+    <th>Drilling</th>
+      <p>Prioritizing Drilling on Public Lands: {{showVM.senator["Prioritizing Drilling on Public Lands (17)"]}}</p>
+      <p>Forcing Tar Sands Polluters to Pay for Spills: {{showVM.senator["Forcing Tar Sands Polluters to Pay for Spills (19)"]}}</p>
+      <p>Keystone XL Tar Sands Pipeline (KXL): {{showVM.senator["Keystone XL Tar Sands Pipeline (KXL) (49)"]}}</p>
+    <p>Keystone XL Tar Sands Pipeline: {{showVM.senator["Keystone XL Tar Sands Pipeline (KXL) Veto Override (68)"]}}</p>
 
-      <th>Lands/Forests – Votes addressing both private and public lands and forests, including wilderness designations, federal land management agencies, logging, mining, and grazing.</th>
+    <th>Lands/Forests</th>
 
-      <th>Oceans – Votes on ocean conservation issues, including fisheries management.</th>
+      <p>Land & Water Conservation Fund: {{showVM.senator["Land & Water Conservation Fund (LWCF) (43)"]}}</p>
+        <p>Selling Off America's Public Lands: {{showVM.senator["Selling Off America's Public Lands (106)"]}}</p>
 
-      <th>Other – A broad catch-all category that includes votes on overhauling the regulatory process, sweeping funding cuts, the National Environmental Policy Act, federal appointments and nominations, campaign finance reform, trade, family planning, and eminent domain/takings, among other issues.</th>
+    <th>Other</th>
+      <p>Limiting Access to the Courts: {{showVM.senator["Limiting Access to the Courts (7)"]}}</p>
+      <p>National Monuments: {{showVM.senator["National Monuments (37)"]}}</p>
+      <p>Investor Anti-environment vote in State Dispute Settlement in Trade Agreements: {{showVM.senator["InvestorAnti-environment voteState Dispute Settlement in Trade Agreements (188)"]}}</p>
+      <p>Fast Track of Trade Agreements: {{showVM.senator["Fast Track of Trade Agreements (193)"]}}</p>
 
-      <th>Toxics/Public Right to Know – Votes on the use of and exposure to toxic chemicals (including pesticides), the public’s right to know if they are at risk, and Superfund sites.</th>
 
-      <th>Transportation – Votes on transportation and vehicle fuels policy, including fuel efficiency standards, biking and walking infrastructure, transit, and rail.</th>
+    <th>Water</th>
+        <p>Fracking Drinking Water Loophole: {{showVM.senator["Fracking Drinking Water Loophole (41)"]}}</p>
+        <p>Gutting Clean Water Protections: {{showVM.senator["Gutting Clean Water Protections (295)"]}}</p>
+        <p>Extreme Assault on Clean Water Rule: {{showVM.senator["Extreme Assault on Clean Water Rule (CRA) (297)"]}}</p>
 
-      <th>Water – Votes on water quality and quantity issues and water pollution, including votes related to the Clean Water Act.</th>
+    <th>Wildlife</th>
 
-      <th>Wildlife – Votes on fish (freshwater and saltwater) and wildlife issues, including the Endangered Species Act.</th>
+      <p>Prairie Anti-environment vote Chicken Protections: {{showVM.senator["Prairie Anti-environment vote Chicken Protections (35)"]}}</p>
+      <p>Undermining Critical Habitat for Wildlife: {{showVM.senator["Undermining Critical Habitat for Wildlife (128)"]}}</p>
     </thead>
     <tbody>
       <tr>
@@ -51,34 +55,49 @@
           Attack on Clean Air Protections: {{showVM.senator["Attack on Clean Air Protections (9)"]}}
         </td>
       </tr>
+      <tr>
+        <td>
+          <p>Climate Change Science: {{showVM.senator["Climate Change Science (12)"]}}</p>
+        </td>
+        <td>
+          <p>International Climate Action: {{showVM.senator["International Climate Action (20)"]}}</p>
+        </td>
+        <td>
+          <p>Responding to the Threat of Climate Change: {{showVM.senator["Responding to the Threat of Climate Change (115)"]}}</p>
+        </td>
+        <td>
+          <p>Climate Change Science Education: {{showVM.senator["Climate Change Science Education (238)"]}}</p>
+        </td>
+      </tr>
     </tbody>
   </table>
 
-  <p>Limiting Access to the Courts: {{showVM.senator["Limiting Access to the Courts (7)"]}}</p>
 
-  <p>Climate Change Science: {{showVM.senator["Climate Change Science (12)"]}}</p>
-  <p>Prioritizing Drilling on Public Lands: {{showVM.senator["Prioritizing Drilling on Public Lands (17)"]}}</p>
-  <p>Forcing Tar Sands Polluters to Pay for Spills: {{showVM.senator["Forcing Tar Sands Polluters to Pay for Spills (19)"]}}</p>
-  <p>International Climate Action: {{showVM.senator["International Climate Action (20)"]}}</p>
-  <p>Liquefied Natural Gas: {{showVM.senator["Liquefied Natural Gas (LNG) Exports (34)"]}}</p>
-  <p>Prairie Anti-environment vote Chicken Protections: {{showVM.senator["Prairie Anti-environment vote Chicken Protections (35)"]}}</p>
-  <p>National Monuments: {{showVM.senator["National Monuments (37)"]}}</p>
-  <p>Clean Energy Tax Credits: {{showVM.senator["Clean Energy Tax Credits (40)"]}}</p>
-  <p>Fracking Drinking Water Loophole: {{showVM.senator["Fracking Drinking Water Loophole (41)"]}}</p>
-  <p>Land & Water Conservation Fund: {{showVM.senator["Land & Water Conservation Fund (LWCF) (43)"]}}</p>
-  <p>Renewable Electricity Standard: {{showVM.senator["Renewable Electricity Standard (RES) (44)"]}}</p>
-  <p>Keystone XL Tar Sands Pipeline (KXL): {{showVM.senator["Keystone XL Tar Sands Pipeline (KXL) (49)"]}}</p>
-  <p>Keystone XL Tar Sands Pipeline: {{showVM.senator["Keystone XL Tar Sands Pipeline (KXL) Veto Override (68)"]}}</p>
-  <p>Selling Off America's Public Lands: {{showVM.senator["Selling Off America's Public Lands (106)"]}}</p>
-  <p>Responding to the Threat of Climate Change: {{showVM.senator["Responding to the Threat of Climate Change (115)"]}}</p>
-  <p>Undermining Critical Habitat for Wildlife: {{showVM.senator["Undermining Critical Habitat for Wildlife (128)"]}}</p>
-  <p>InvestorAnti-environment voteState Dispute Settlement in Trade Agreements: {{showVM.senator["InvestorAnti-environment voteState Dispute Settlement in Trade Agreements (188)"]}}
+
+
+
+
+
+
+
+
     <p>Fast Track of Trade Agreements: {{showVM.senator["Fast Track of Trade Agreements (193)"]}}</p>
-    <p>Climate Change Science Education: {{showVM.senator["Climate Change Science Education (238)"]}}</p>
-    <p>Gutting Clean Water Protections: {{showVM.senator["Gutting Clean Water Protections (295)"]}}</p>
-    <p>Extreme Assault on Clean Water Rule: {{showVM.senator["Extreme Assault on Clean Water Rule (CRA) (297)"]}}</p>
-    <p>Extreme Attack on Carbon Pollution Limits for Existing Power Plants: {{showVM.senator["Extreme Attack on Carbon Pollution Limits for Existing Power Plants (CRA) (306)"]}}</p>
-    <p>xtreme Attack on Carbon Pollution Limits for New Power Plants: {{showVM.senator["Extreme Attack on Carbon Pollution Limits for New Power Plants (CRA) (307)"]}}</p>
+
+
+
+  </div>
+
+  <h3>User Reviews</h3>
+  <div data-ng-repeat="review in showVM.senator.reviews track by $index">
+    <div class="card card--fixedWidth">
+      <p>{{review}}</p>
+      <div class="card__btn" data-ng-click="showVM.removeReview($index)">Delete Review</div>
+    </div>
+  </div>
+
+  <div class="card card--fixedWidth">
+    <textarea type="text" placeholder="Add your review here" data-ng-model="showVM.newReview"/></textarea>
+    <div class="card__btn" data-ng-click="showVM.addReview()" type="submit">Add a review</div>
   </div>
 
   <div data-ng-if="!showVM.senator">

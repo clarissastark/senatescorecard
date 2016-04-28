@@ -226,6 +226,17 @@ app.get("/logout", function(req, res) {
   });
 });
 
+app.get("/status", function(req, res) {
+  if (!req.isAuthenticated()) {
+    return res.status(200).json({
+      status: false
+    });
+  }
+  res.status(200).json({
+    status: true
+  });
+});
+
 // route to log out
 // app.post("/logout", function(req, res, next){
 //   req.logOut();

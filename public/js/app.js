@@ -28,23 +28,11 @@
     "$stateParams",
     senatShowCtrl
   ])
-  .controller('loginController',[
-    '$scope',
-    '$location',
-    'AuthService',
-    loginCtrlFunction
-  ])
-  .controller('logoutController', [
-    '$scope',
-    '$location',
-    'AuthService',
-    logoutCtrlFunction
-  ])
-  .factory("AuthService", [
-    "$q",
-    "$timeout",
-    "$http",
-  function ($q, $timeout, $http) {
+  .factory('AuthService', [
+  '$q',
+  '$timeout',
+  '$http',
+  function ($q, $timeout, $http){
     // create user variable
     var user = null;
     // return available functions for use in the controllers
@@ -54,22 +42,34 @@
       login: login,
       logout: logout,
       register: register
-    });
+    }),
+    login,
+    register,
+    logout
   }])
-  .run(function ($rootScope, $location, $route, AuthService) {
-    $rootScope.$on('$routeChangeStart',
-    function (event, next, current) {
-      if (AuthService.isLoggedIn() === false) {
-        $location.path('/login');
-      }
-    });
-  })
-  .controller('registerController', [
-    '$scope',
-    '$location',
-    'AuthService',
-    regCtrlFunction
+  .run([
+    "$rootScope",
+    "$location",
+    routeChange
   ])
+  .controller("loginController", [
+    "$scope",
+    "$location",
+    "AuthService",
+    loginCtrlFunction
+  ])
+  .controller("logoutController", [
+    "$scope",
+    "$location",
+    "AuthService",
+    logoutCtrlFunction
+  ])
+  .controller("registerController", [
+    "$scope",
+    "$location",
+    "AuthService",
+    regCtrlFunction
+  ]);
 
   function Router($stateProvider, $locationProvider, $urlRouterProvider, $httpProvider, $routeProvider){
     // enable html5Mode for "#"-less URLs
@@ -90,64 +90,24 @@
       templateUrl: "/assets/html/senators-show.html",
       controller: "senatShowCtrl",
       controllerAs: "showVM"
-    });
-    // $routeProvider
-    // .when('/login', {
-    //   templateUrl: '/assets/html/login.html',
-    //   controller: 'loginController',
-    //   access: {restricted: false}
-    // })
-    // .when('/logout', {
-    //   controller: 'logoutController',
-    //   access: {restricted: true}
-    // })
-    // .when('/register', {
-    //   templateUrl: 'register.html',
-    //   controller: 'registerController',
-    //   access: {restricted: false}
-    // })
-    // .otherwise({
-    //   redirectTo: '/'
-    // });
-    // .state("login", {
-    //   url: "/login",
-    //   templateUrl: "assets/html/login.html",
-    //   controller: "loginCtrl"
-    // })
-    // .state("signup", {
-    //   url: "/signup",
-    //   templateUrl: "assets/html/signup.html",
-    //   controller: "signupCtrl"
-    // })
-    // $urlRouterProvider.otherwise("/");
-    // var checkLoggedIn = function($q, $timeout, $http, $location, $rootScope){
-    //   // Initialize a new promise
-    //   var deferred = $q.defer(); // Make an AJAX call to check if the user is logged in
-    //   $http.get("/loggedIn").success(function(user){
-    //     // Authenticated
-    //     if (user !== "0") deferred.resolve();
-    //     // Not Authenticated
-    //     else {
-    //       $rootScope.message = "You need to log in.";
-    //       deferred.reject();
-    //       $location.url("/login");
-    //     }
-    //   });
-    //   return deferred.promise;
-    // };
-    // // detects when an AJAX call returns a 401 status and displays the login form
-    // $httpProvider.interceptors.push(function($q, $location) {
-    //   return {
-    //     response: function(response) { // do something on success
-    //       return response;
-    //     },
-    //     responseError: function(response) {
-    //       if (response.status === 401)
-    //       $location.url("/login");
-    //       return $q.reject(response);
-    //     }
-    //   };
-    // });
+    })
+    .state("login", {
+      url: "/login",
+      templateUrl: "/assets/html/login.html",
+      controller: "loginController",
+      access: {restricted: false}
+    })
+    .state("/logout", {
+      url: "/logout",
+      controller: "logoutController",
+      access: {restricted: true}
+    })
+    .state("/register", {
+      url: "/register",
+      templateUrl: "/assets/html/register.html",
+      controller: "registerController",
+      access: {restricted: false}
+    })
   }
 
   function Senator($resource){
@@ -207,39 +167,6 @@
     else next();
   }
 
-  function logoutCtrlFunction($scope, $location, AuthService){
-    $scope.logout = function () {
-      // call logout from service
-      AuthService.logout()
-      .then(function () {
-        $location.path('/login');
-      });
-    };
-  }
-
-  function loginCtrlFunction($scope, $location, AuthService){
-    $scope.login = function () {
-      // initial values
-      $scope.error = false;
-      $scope.disabled = true;
-      // call login from service
-      AuthService.login($scope.loginForm.username, $scope.loginForm.password)
-      // handle success
-      .then(function () {
-        $location.path('/');
-        $scope.disabled = false;
-        $scope.loginForm = {};
-      })
-      // handle error
-      .catch(function () {
-        $scope.error = true;
-        $scope.errorMessage = "Invalid username and/or password";
-        $scope.disabled = false;
-        $scope.loginForm = {};
-      });
-    };
-  }
-
   function isLoggedIn() {
     if(user) {
       return true;
@@ -249,19 +176,32 @@
   }
 
   function getUserStatus() {
-    return user;
+    return $http.get("/user/status")
+    // handle success
+    .success(function (data) {
+      if(data.status){
+        user = true;
+      } else {
+        user = false;
+      }
+    })
+    // handle error
+    .error(function (data) {
+      user = false;
+    });
   }
 
-  function login(username, password) {
-
+  function login(username, password, $q){
     // create a new instance of deferred
     var deferred = $q.defer();
-
     // send a post request to the server
-    $http.post('/user/login',
-    {username: username, password: password})
+    $http.post("/user/login",
+    {
+      username: username,
+      password: password
+    })
     // handle success
-    .success(function (data, status) {
+    .success(function (data, status){
       if(status === 200 && data.status){
         user = true;
         deferred.resolve();
@@ -271,21 +211,20 @@
       }
     })
     // handle error
-    .error(function (data) {
+    .error(function (data){
       user = false;
       deferred.reject();
     });
-
     // return promise object
+    console.log(deferred.promise);
     return deferred.promise;
-
   }
 
-  function logout() {
+  function logout(){
     // create a new instance of deferred
     var deferred = $q.defer();
     // send a get request to the server
-    $http.get('/user/logout')
+    $http.get("/user/logout")
     // handle success
     .success(function (data) {
       user = false;
@@ -300,11 +239,11 @@
     return deferred.promise;
   }
 
-  function register(username, password) {
+  function register(username, password){
     // create a new instance of deferred
     var deferred = $q.defer();
     // send a post request to the server
-    $http.post('/user/register',
+    $http.post("/user/register",
     {username: username, password: password})
     // handle success
     .success(function (data, status) {
@@ -320,32 +259,76 @@
     });
     // return promise object
     return deferred.promise;
-
   }
 
+  function logoutCtrlFunction($scope, $location, AuthService){
+    $scope.logout = function () {
+      // call logout from service
+      AuthService.logout()
+      .then(function () {
+        $location.path("/login");
+      });
+    };
+  }
 
+  function loginCtrlFunction($scope, $location, AuthService){
+    $scope.login = function () {
+      // initial values
+      $scope.error = false;
+      $scope.disabled = true;
+      // call login from service
+      AuthService.login($scope.loginForm.username, $scope.loginForm.password)
+      // handle success
+      .then(function () {
+        $location.path("/");
+        $scope.disabled = false;
+        $scope.loginForm = {};
+      })
+      // handle error
+      .catch(function () {
+        $scope.error = true;
+        $scope.errorMessage = "Invalid username and/or password";
+        $scope.disabled = false;
+        $scope.loginForm = {};
+      });
+    };
+  }
 
-  // function loginCtrl($scope, $rootScope, $http, $location){
-  //   // This object will be filled by the form
-  //   $scope.user = {};
-  //   // Register the login() function
-  //   $scope.login = function(){
-  //     $http.post("/login", {
-  //       username: $scope.user.username,
-  //       password: $scope.user.password,
-  //     })
-  //     .success(function(user){
-  //       // No error: authentication OK
-  //       $rootScope.message = "Authentication successful!";
-  //       $location.url("/admin");
-  //     })
-  //     .error(function(){
-  //       // Error: authentication failed
-  //       $rootScope.message = "Authentication failed.";
-  //       $location.url("/login");
-  //     });
-  //   };
-  // };
+  function regCtrlFunction($scope, $location, AuthService){
+    $scope.register = function(){
+      // initial values
+      $scope.error = false;
+      $scope.disabled = true;
+      // call register from service
+      AuthService.register($scope.registerForm.username, $scope.registerForm.password)
+      // handle success
+      .then(function () {
+        $location.path("/login");
+        $scope.disabled = false;
+        $scope.registerForm = {};
+      })
+      // handle error
+      .catch(function () {
+        $scope.error = true;
+        $scope.errorMessage = "Something went wrong!";
+        $scope.disabled = false;
+        $scope.registerForm = {};
+      });
+    };
+  }
+
+  function routeChange($rootScope, $location, $route, AuthService){
+    $rootScope.$on("$routeChangeStart",
+    function (event, next, current) {
+      AuthService.getUserStatus()
+      .then(function(){
+        if (next.access.restricted && !AuthService.isLoggedIn()){
+          $location.path("/login");
+          $route.reload();
+        }
+      });
+    });
+  }
 
 }());
 
