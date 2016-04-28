@@ -59,11 +59,11 @@
       templateUrl: "assets/html/login.html",
       controller: "loginCtrl"
     })
-    .state("signup", {
-      url: "/signup",
-      templateUrl: "assets/html/signup.html",
-      controller: "signupCtrl"
-    })
+    // .state("signup", {
+    //   url: "/signup",
+    //   templateUrl: "assets/html/signup.html",
+    //   controller: "signupCtrl"
+    // })
     $urlRouterProvider.otherwise("/");
     var checkLoggedin = function($q, $timeout, $http, $location, $rootScope){
       // Initialize a new promise
@@ -152,7 +152,6 @@
     else next();
   };
 
-
   function loginCtrl($scope, $rootScope, $http, $location){
     // This object will be filled by the form
     $scope.user = {};
@@ -174,8 +173,6 @@
       });
     };
   };
-
-  // function signupCtrl()
 
 }());
 

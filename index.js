@@ -9,12 +9,21 @@ var cookieParser = require("cookie-parser");
 var flash = require("connect-flash");
 var request = require("request");
 require("./config/passport")(passport);
+var user = require("./models/user");
 
 var app = express();
 
 var Senator = mongoose.model("Senator");
 
 app.set("port", process.env.PORT || 3001);
+
+app.set("view engine", "html");
+// app.engine(".hbs", hbs({
+//   extname:        ".html",
+//   partialsDir:    "assets/html",
+//   layoutsDir:     "assets/html",
+  // defaultLayout:  "layout-main"
+// }));
 
 app.use("/assets", express.static("public"));
 app.use("/bower", express.static("bower-components"));
@@ -24,7 +33,6 @@ app.use(parser.json({extended: true}));
 //Passport authorization – removes the "req.flash is not a function" error
 app.use(flash()); // use connect-flash for flash messages stored in session
 app.use(session({ secret: "purpleschmurple", cookie: { secure: false } })); // session secret
-//app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
@@ -53,7 +61,6 @@ app.get("/api/senators", function(req,res){
     res.json(senators);
   });
 });
-
 
 app.put("/api/senators", function(req,res){
   Senator.update(req.body.senator).then(function(senator){
@@ -91,11 +98,10 @@ app.post("/api/senators/:name", function(req, res){
 
 app.get("/", function(app,passport,req,res,next){
   res.send('respond with a resource');
-
 });
 
 app.get("/signup", function(req, res) {
-  res.render("signup.html", { message: req.flash("signupMessage") });
+  res.render("assets/html/signup.html", { message: req.flash("signupMessage") });
 });
 
 // process the signup form
@@ -105,9 +111,9 @@ app.post("/signup", passport.authenticate("local-signup", {
   failureFlash : true
 }));
 
-app.get("/login", function(req, res){
-  res.render("login.html", { message: req.flash("loginMessage") });
-});
+// app.get("/login", function(req, res){
+//   res.render("assets/html/login", { message: req.flash("loginMessage") });
+// });
 
 // process the login form
 app.post("/login", function(req,res){
@@ -153,10 +159,8 @@ app.get("/logout", function(req, res){
 
 //======== ANGULAR USER SIGNUP/LOGIN  ======//
 
-app.get("/users", isLoggedIn, function(req,res){
-  User.findOne({email: req.params.name}).then(function(user){
-    res.send(user)
-  });
+app.get("/users", function(req, res, next) {
+  res.send('respond with a resource');
 });
 
 // route to test if the user is logged in or not

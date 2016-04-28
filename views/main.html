@@ -5,25 +5,49 @@
   <base href="/">
   <title>SenateScore</title>
   <link href="/assets/css/styles.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="assets/imgs/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="assets/imgs/favicon.png">
+  <link rel="icon" sizes="57x57" href="assets/imgs/favicon-32x32.png">
+  <link rel="icon" sizes="57x57" href="assets/imgs/favicon-57x57.png">
+  <link rel="icon" sizes="72x72" href="assets/imgs/favicon-72x72.png">
+  <link rel="icon" sizes="76x76" href="assets/imgs/favicon-76x76.png">
+  <link rel="icon" sizes="114x114" href="assets/imgs/favicon-114x114.png">
+  <link rel="icon" sizes="120x120" href="assets/imgs/favicon-120x120.png">
+  <link rel="icon" sizes="144x144" href="assets/imgs/favicon-144x144.png">
+  <link rel="icon" sizes="152x152" href="assets/imgs/favicon-152x152.png">
+  <meta name="msapplication-TileColor" content="#FFFFFF">
+  <meta name="msapplication-TileImage" content="assets/imgs/favicon-144x144.png">
+  <meta name="application-name" content="Website Title">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular-resource.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.min.js"></script>
   <script src="/assets/js/app.js"></script>
-  <script src="/assets/js/facebook.js"></script>
+  <!-- <script src="/assets/js/nav.js"></script> -->
 </head>
 <body data-ng-app="senatescore">
-  <nav>
-    <ul>
-      <div data-ng-if="currentUser">
-        <li><a href="/logout">Logout {{currentUser.local.email}}</a></li>
+  <div class="siteHeader">
+    <div class="siteHeader__section">
+      <div class="siteHeaderLogo">
+        <a data-ui-sref="index"><img class="img-circle" src="assets/imgs/senscore_logo_v2.png"></a>
       </div>
-      <div data-ng-if="!currentUser">
-        <li><a href="/login">Login</a> | <a href="/signup">Signup</a></li>
-        <li>Signup / Login with: <a href="/auth/facebook">Facebook</a> | <a href="/auth/twitter">Twitter</a> </li>
+      <div class="siteHeader__item siteHeaderButton is-site-header-item-selected" padding: 5px 15px;>
+        <a data-ui-sref="index">Home</a>
       </div>
-    </ul>
-  </nav>
-  <h2><a data-ui-sref="index">SenateScore</a></h2>
-  <main data-ui-view></main>
+      <!-- <div class="siteHeader__item siteHeaderButton">Reviews</div> -->
+    </div>
+    <!-- This section gets pushed to the right side-->
+    <div class="siteHeader__section">
+      <div class="siteHeader__item siteHeaderButton" data-ng-if="currentUser">
+        <a href="/logout">Logout {{currentUser.local.email}}</a>
+      </div>
+      <div class="siteHeader__item siteHeaderButton" data-ng-if="!currentUser">
+          <a href="/login">Login</a>
+      </div>
+    </div>
+  </div>
+</div>
+<main data-ui-view></main>
 </body>
 </html>

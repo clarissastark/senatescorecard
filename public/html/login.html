@@ -1,19 +1,38 @@
-<h2>Login</h2>
 
-<div data-ng-if="message">
-  <div class="alert alert-danger">{{message}}</div>
-</div>
-
-<form method="post" action="/login">
-  <div>
-    <label for="email">Email</label>
-    <input type="text" name="email" id="email">
+  <div class="callToActionSection">
+    <div class="callToAction__title">Login</div>
+    <div class="callToAction__label" data-ng-if="message">
+      <div class="alert alert-danger">{{message}}</div>
+    </div>
   </div>
+  <div class="callToActionSection">
+    <form method="post" action="/login">
+      <div class="callToAction__label">
+        <label for="email">Email</label>
+      </div>
+      <input type="text" name="email" id="email">
+      <div class="callToAction__label">
+        <label for="email">Password</label>
+      </div>
+      <input type="password" name="password" id="password">
+      <div class="formFooter">
+        <div class="formFooter__section">
+          <div class="formFooter__item formFooterFeedback">
+            <div class="fa fa-spinner formFooterSpinner"></div>&nbsp;Saving...
+          </div>
+        </div>
+        <div class="formFooter__section">
+          <div >
+            <input type="submit" class="formFooter__item button">
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
 
-  <div>
-    <label for="email">Password</label>
-    <input type="password" name="password" id="password">
-  </div>
 
-  <input type="submit">
-</form>
+<h3>Or login with:</h3>
+<button><a href="/auth/facebook">Facebook</a></button>
+<button><a href="/auth/twitter">Twitter</a><button>
+
+  <p>Don't have an account? <a href="/signup">Signup</a></p>

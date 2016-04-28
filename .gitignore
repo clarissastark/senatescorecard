@@ -1,3 +1,4 @@
 node_modules/*
 env.json
 bower_components
+psds/*
