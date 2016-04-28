@@ -1,5 +1,6 @@
+
 <div data-ng-if="showVM.senator">
-  <h2>Sen. {{senator.firstName}} {{showVM.senator.lastName}}</h2>
+  <h2>Sen. {{showVM.senator.firstName}} {{showVM.senator.lastName}}</h2>
 
   <h3>User Reviews</h3>
   <div data-ng-repeat="review in showVM.senator.reviews track by $index">
