@@ -1,3 +1,270 @@
+@import "bourbon/bourbon";
+@import "jeet/grid";
+
+$primaryColor: hsl(195, 87%, 36%);
+$successColor: hsl(157, 100%, 35%);
+$warningColor: hsl(347, 100%, 35%);
+$fontMain: Oswald, sans-serif;
+$fontSecondary: Georgia, serif;
+
 body {
+  font-family: $fontMain;
+}
+
+// for the welcome page
+.centeredPrompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  padding: 10px;
+}
+
+.centeredPrompt__item + .centeredPrompt__item {
+  margin-top: 5px;
+}
+
+.centeredPromptIcon {
+  font-size: 60px;
+  line-height: 0;
+}
+
+.centeredPromptLabel {
+  color: darken($primaryColor, 15%);
+  font-size: 30px;
+  font-weight: 700;
   text-align: center;
 }
+
+.centeredPromptDetails {
+  color: lighten($primaryColor, 40%);
+  font-size: 16px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-family: $fontSecondary;
+}
+
+.icon {
+  color: lighten($primaryColor, 80%);
+}
+
+// for the nav bar
+.siteHeader {
+  font-family: $fontMain;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: $primaryColor;
+}
+
+.siteHeader__section {
+  display: flex;
+  align-items: center;
+}
+
+.siteHeader__item {
+  padding: 5px 15px;
+  font-size: 12px;
+}
+
+.siteHeader__item > a{
+  text-decoration: none;
+  color: lighten($primaryColor, 80%);
+}
+
+.siteHeader__item + .siteHeader__item {
+  margin-left: 5px;
+}
+
+.siteHeader__item.is-site-header-item-selected {
+  color: lighten($primaryColor, 80%);
+  background-color: darken($primaryColor, 15%);
+  border-radius: 4px;
+}
+
+.siteHeader__item:hover {
+  background-color: darken($primaryColor, 5%);
+  border-radius: 4px;
+}
+
+.siteHeaderLogo {
+  font-size: 20px;
+  line-height: 0;
+  color: lighten($primaryColor, 80%);
+}
+
+.siteHeaderButton {
+  cursor: pointer;
+  color: lighten($primaryColor, 80%);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid lighten($primaryColor, 80%);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.card__description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+
+.card__descriptionIcon {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.card__descriptionText {
+  color: lighten($primaryColor, 10%);
+  font-size: 12px;
+  text-align: center;
+}
+
+.card__price {
+  text-align: center;
+  color: lighten($primaryColor, 10%);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 15px;
+  border-top: 1px solid lighten($primaryColor, 80%);
+  background-color: lighten($primaryColor, 50%);
+}
+
+.card--fixedWidth {
+  max-width: 120px;
+}
+
+
+.button {
+  cursor: pointer;
+  padding: 5px 15px;
+  color: lighten($primaryColor, 80%);
+  background-color: $warningColor;
+  font-size: 12px;
+  border: 1px solid darken($warningColor, 10%);
+  border-radius: 4px;
+}
+
+.button > a{
+  text-decoration: none;
+  color: lighten($primaryColor, 80%);
+}
+
+.button--addOnLeft {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.button--addOnRight {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.button:hover {
+  background-color: darken($warningColor, 5%);
+  border-radius: 4px;
+}
+
+.button--clear {
+  color: $primaryColor;
+  background-color: lighten($primaryColor, 80%);
+  border: 1px solid lighten($primaryColor, 80%);
+}
+
+.callToAction {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  box-shadow: 0 0 5px rgba(0,0,0,.3);
+  border-top: 8px solid #00B572;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  box-sizing: border-box;
+}
+
+.callToAction__title {
+    font-size: 24px;
+    font-weight: 400;
+    color: darken($primaryColor, 10%);
+    box-sizing: border-box;
+}
+
+.callToAction__input {
+    display: block;
+    padding: 8px 12px;
+    border: 1px solid lighten($primaryColor, 80%);
+    font-size: 16px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.callToActionSection+.callToActionSection {
+    border-left: none;
+    border-top: 1px dotted lighten($primaryColor, 80%);
+}
+
+.callToAction__label {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #373D44;
+    margin-bottom: 6px;
+}
+
+.formFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid lighten($primaryColor, 80%);
+  padding: 10px;
+}
+
+.formFooter__section {
+  display: flex;
+  align-items: center;
+}
+
+.formFooter__item + .formFooter__item {
+  margin-left: 5px;
+}
+
+.formFooterFeedback {
+  color: #86969C;
+  font-size: 12px;
+  line-height: 0;
+}
+
+.formFooterSpinner {
+  animation: formFooterSpinner 1s infinite steps(8, end);
+}
+
+@keyframes formFooterSpinner {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+
+// section {
+//   @include linear-gradient(to top, red, orange);
+// }
+//
+// body {
+//   text-align: center;
+// }
+//
+// h1 {
+//   font-family: $helvetica;
+//   font-size: golden-ratio(14px,  1);
+// }
+//
+// .senatorCard {
+//   @include background-image(linear-gradient(hsla(0, 100%, 100%, 0.25) 0%, hsla(0, 100%, 100%, 0.08) 50%, transparent 50%),
+//   linear-gradient(#4e7ba3, darken(#4e7ba4, 10%)));
+// }
