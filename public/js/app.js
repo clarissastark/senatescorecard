@@ -4,14 +4,15 @@
   angular
   .module("senatescore", [
     "ui.router",
-    "ngResource"
+    "ngResource",
+    "ngRoute"
   ])
   .config([
     "$stateProvider",
     "$locationProvider",
     "$urlRouterProvider",
     "$httpProvider",
-    "ngRoute",
+    "$routeProvider",
     Router
   ])
   .factory("Senator", [
@@ -39,8 +40,10 @@
     'AuthService',
     logoutCtrlFunction
   ])
-  .factory("AuthService",
-  ["$q", "$timeout", "$http",
+  .factory("AuthService", [
+    "$q",
+    "$timeout",
+    "$http",
   function ($q, $timeout, $http) {
     // create user variable
     var user = null;
@@ -60,9 +63,15 @@
         $location.path('/login');
       }
     });
-  });
+  })
+  .controller('registerController', [
+    '$scope',
+    '$location',
+    'AuthService',
+    regCtrlFunction
+  ])
 
-  function Router($stateProvider, $locationProvider, $urlRouterProvider, $httpProvider, ngRoute, $routeProvider){
+  function Router($stateProvider, $locationProvider, $urlRouterProvider, $httpProvider, $routeProvider){
     // enable html5Mode for "#"-less URLs
     $locationProvider.html5Mode(true);
     $stateProvider
@@ -82,24 +91,24 @@
       controller: "senatShowCtrl",
       controllerAs: "showVM"
     });
-    $routeProvider
-    .when('/login', {
-      templateUrl: '/assets/html/login.html',
-      controller: 'loginController',
-      access: {restricted: false}
-    })
-    .when('/logout', {
-      controller: 'logoutController',
-      access: {restricted: true}
-    })
-    .when('/register', {
-      templateUrl: 'register.html',
-      controller: 'registerController',
-      access: {restricted: false}
-    })
-    .otherwise({
-      redirectTo: '/'
-    });
+    // $routeProvider
+    // .when('/login', {
+    //   templateUrl: '/assets/html/login.html',
+    //   controller: 'loginController',
+    //   access: {restricted: false}
+    // })
+    // .when('/logout', {
+    //   controller: 'logoutController',
+    //   access: {restricted: true}
+    // })
+    // .when('/register', {
+    //   templateUrl: 'register.html',
+    //   controller: 'registerController',
+    //   access: {restricted: false}
+    // })
+    // .otherwise({
+    //   redirectTo: '/'
+    // });
     // .state("login", {
     //   url: "/login",
     //   templateUrl: "assets/html/login.html",
