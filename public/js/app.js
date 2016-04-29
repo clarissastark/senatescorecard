@@ -151,7 +151,7 @@
       };
       vm.addReview = function(){
         vm.senator.reviews.push(vm.newReview);
-        vm.newPosition = "";
+        vm.newReview = "";
         vm.update();
       };
       vm.removeReview = function($index){

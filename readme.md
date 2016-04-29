@@ -1,22 +1,29 @@
-***THIS APP***
+**The Senate Scoredcard**
 
-*THIS APP* is a web app for both the politically savvy and un-savvy. Site visitors are able to add quotes and politicians to the database and vote on quotes that they agree and disagree with.
+The Senate Scoredcard is a web app that will be a hub for nonprofit scorecards.
 
 The politicians and quotes feed into a quiz that pulls a random quote and politician from the database and asks the user to guess if the quote matches the person.
 
 **Installation Instructions**
 
-Clone this repository to your local computer, run npm install, and then **npm start** in your CLI to access a version of the site.
+Clone this repository to your local computer, run npm install, and then npm start in your CLI to access a version of the site.
 
 **Technologies Used**
-*THIS APP* is a MEAN stack app. I utilized bootstrap for most of the CSS.
+
+The Senate Scoredcard is a MEAN stack app. I utilized flexbox patterns for most of the CSS.
 
 **Approach Taken**
 
-The idea behind *THIS APP* is to begin addressing the problem of America's low voter turnout and engagement through gamifying how well people know politicians and allowing people to voice their opinion on the things politicians say.
-
-I started creating an ERD of politicians and quotes and realized that I wanted to add more interactivity by including a game. I started with the simpliest game idea I could think of, which was pulling one random quote and one random politician from the database.
-
-If I were going to do it again, I might make the game "Bullshitting, or Not?" as I think it's way more fun for people to call out bullshit than getting facts right.
+The idea behind The Senate Scoredcard is to update nonprofit scorecards for the modern day and make a hub for users where they can add their own reviews and, more like a Yelp for our legislative leaders. Ultimately, I hope to combine data from several different non-profit scorecards to create a full picture for each Member of Congress.
 
 **Unsolved Problems**
+
+Angular local logins aren't working, although the Express routes function.  Facebook and Twitter logins are also not funcitonal presently. As such, reviews aren't tied to users.
+
+The review box also doesn't clear when a review is submitted. 
+
+**Future Updates**
+
+I would like to add a rating system similar to Yelp. I'd like add a section for Senate candidates as a resource for users during election season.
+
+I would also like to use d3 to display individual senators' votes for and against different topic areas.
