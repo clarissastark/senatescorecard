@@ -1,57 +1,36 @@
-<div class="form_block ">
-  <div class="form__title">Login</div>
-  <div data-ng-show="error" class="alert alert-danger">{{errorMessage}}</div>
-  <form class="form" data-ng-submit="login()">
-    <div class="formSection">
-      <label>Username</label>
-      <input type="text" class="form-control" name="username" data-ng-model="loginForm.username" required>
-    </div>
-    <div class="form__label">
-      <label>Password</label>
-    </div>
-    <div class="form__input">
-        <input type="password" class="form-control" name="password" data-ng-model="loginForm.password" required>
-    </div>
-      <div>
-        <button type="submit" class="formFooter__item button" data-ng-disabled="disabled">Login</button>
-      </div>
-  </form>
-</div>
-
-  <!-- <div class="callToActionSection">
-    <div class="callToAction__title">Login</div>
-    <div class="callToAction__label" data-ng-if="message">
-      <div class="alert alert-danger">{{message}}</div>
+<div class="form_block">
+  <div class="formSection">
+    <div class="form__title">Login</div>
+    <div data-ng-show="error" class="alert alert-danger">
+      <div class="alert alert-danger">{{errorMessage}}</div>
     </div>
   </div>
-  <div class="callToActionSection">
-    <form method="post" action="/login">
-      <div class="callToAction__label">
-        <label for="email">Email</label>
-      </div>
-      <input type="text" name="email" id="email">
-      <div class="callToAction__label">
-        <label for="email">Password</label>
-      </div>
-      <input type="password" name="password" id="password">
-      <div class="formFooter">
-        <div class="formFooter__section">
-          <div class="formFooter__item formFooterFeedback">
-            <div class="fa fa-spinner formFooterSpinner"></div>&nbsp;Saving...
-          </div>
-        </div>
-        <div class="formFooter__section">
-          <div >
-            <input type="submit" class="formFooter__item button">
-          </div>
-        </div>
+  <div class="formSection" data-ng-submit="login()">
+    <div class="form__label">
+      <label>Email Address</label>
+    </div>
+    <input type="text" class="form-control" name="username" data-ng-model="loginForm.username" required>
+  </div>
+  <div class="form__label">
+    <label>Password</label>
+  </div>
+  <input type="password" class="form-control" name="password" data-ng-model="loginForm.password" required>
+
+  <div class="formFooter">
+    <div class="formFooter__section">
+      <div class="formFooter__item formFooterFeedback">
+        <div class="fa fa-spinner formFooterSpinner"></div></div>
+    </div>
+    <div class="formFooter__section">
+      <div >
+        <input type="submit" class="formFooter__item button" data-ng-disabled="disabled">
       </div>
     </div>
-  </form> -->
+  </div>
+  <p>Don't have an account? <a href="/signup">Signup</a></p>
+</div>
 
 
 <!-- <h3>Or login with:</h3>
 <button><a href="/auth/facebook">Facebook</a></button>
 <button><a href="/auth/twitter">Twitter</a><button> -->
-
-  <p>Don't have an account? <a href="/signup">Signup</a></p>

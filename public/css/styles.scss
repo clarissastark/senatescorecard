@@ -222,14 +222,8 @@ a {
 }
 
 .form_block {
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  box-shadow: 0 0 5px rgba(0,0,0,.3);
-  border-top: 8px solid #00B572;
-  margin-top: 60px;
-  margin-bottom: 60px;
-  box-sizing: border-box;
+  max-width: 98%;
+  margin: 10px 20px 0px 20px;
 }
 
 .form__title {
@@ -248,12 +242,16 @@ a {
   margin-bottom: 10px;
   margin-left: auto;
   margin-right: auto;
+}
 
+.form-control {
+  width: 95%;
 }
 
 .formSection+.formSection {
   border-left: none;
-  border-top: 1px dotted $primaryColor;
+  border-top: 1px dotted lighten(complement($primaryColor), 10%);
+  margin: 10px 0px 0px 0px;
 }
 
 .form__label {
@@ -270,6 +268,8 @@ a {
   justify-content: space-between;
   border-top: 1px solid lighten($primaryColor, 50%);
   padding: 10px;
+  margin-top: 20px;
+
 }
 
 .formFooter__section {
