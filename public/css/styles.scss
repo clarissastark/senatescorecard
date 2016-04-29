@@ -8,6 +8,7 @@ $fontSecondary: Georgia, serif;
 
 body {
   font-family: $fontMain;
+  color: darken($primaryColor, 15%);
 }
 
 a {
@@ -113,6 +114,17 @@ a {
   overflow: hidden;
 }
 
+.card__title {
+   text-align: center;
+   color: darken($primaryColor, 15%);
+   font-size: 12px;
+   font-weight: 700;
+   padding: 5px 15px;
+   border-top: 1px solid lighten($primaryColor, 50%);
+   border-top-radius: 4px;
+   background-color: #EEF3F5;
+ }
+
 .card__description {
   display: flex;
   flex-direction: column;
@@ -128,7 +140,7 @@ a {
 
 .card__descriptionText {
   color: lighten($primaryColor, 10%);
-  font-size: 12px;
+  font-size: 16px;
   text-align: center;
 }
 
@@ -155,7 +167,7 @@ a {
 
 .cardGroup {
   display: flex;
-  border: 1px solid #CAD0D2;
+  border: 1px solid lighten($primaryColor, 40%);
   border-radius: 4px;
   overflow: hidden;
 }
@@ -174,6 +186,16 @@ a {
   flex: 1 1 auto;
 }
 
+.centered {
+  text-align: center;
+}
+
+.header {
+  color: lighten(complement($primaryColor), 10%);
+}
+
+// for forms
+
 .button {
   cursor: pointer;
   padding: 5px 15px;
@@ -186,16 +208,6 @@ a {
 
 .button > a{
   color: lighten($primaryColor, 80%);
-}
-
-.button--addOnLeft {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-.button--addOnRight {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
 }
 
 .button:hover {
@@ -295,14 +307,42 @@ a {
   border-radius: 50%;
 }
 
+.featureListItem {
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+  padding: 10px;
+  border-top: 1px solid lighten($primaryColor, 50%);
+}
+
+.featureListItem__icon,
+.featureListItem__description {
+  padding: 5px 15px;
+}
+
+.featureListItem__icon {
+  font-size: 50px;
+  line-height: 0;
+}
+
+.featureListItem__description {
+  color: lighten($primaryColor, 10%);
+  width: 350px;
+  font-size: 12px;
+}
+
+// for d3 chart
 .chart div {
- font: 10px sans-serif;
- background-color: $primaryColor;
- text-align: right;
- padding: 3px;
- margin: 1px;
- color: lighten($primaryColor, 80%);
-     }
+  font: 10px sans-serif;
+  background-color: $primaryColor;
+  text-align: right;
+  padding: 3px;
+  margin: 1px;
+  color: lighten($primaryColor, 80%);
+}
+
+
+
 
 // section {
 //   @include linear-gradient(to top, red, orange);

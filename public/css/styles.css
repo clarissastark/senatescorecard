@@ -1,5 +1,6 @@
 body {
-  font-family: Oswald, sans-serif; }
+  font-family: Oswald, sans-serif;
+  color: #074d64; }
 
 a {
   text-decoration: none; }
@@ -84,6 +85,16 @@ a {
   border-radius: 4px;
   overflow: hidden; }
 
+.card__title {
+  text-align: center;
+  color: #074d64;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 15px;
+  border-top: 1px solid #bcebfa;
+  border-top-radius: 4px;
+  background-color: #EEF3F5; }
+
 .card__description {
   display: flex;
   flex-direction: column;
@@ -97,7 +108,7 @@ a {
 
 .card__descriptionText {
   color: #0fa8db;
-  font-size: 12px;
+  font-size: 16px;
   text-align: center; }
 
 .card__btn {
@@ -120,7 +131,7 @@ a {
 
 .cardGroup {
   display: flex;
-  border: 1px solid #CAD0D2;
+  border: 1px solid #8ddcf7;
   border-radius: 4px;
   overflow: hidden; }
 
@@ -135,6 +146,12 @@ a {
 .cardGroup__cardDescription {
   flex: 1 1 auto; }
 
+.centered {
+  text-align: center; }
+
+.header {
+  color: #db420f; }
+
 .button {
   cursor: pointer;
   padding: 5px 15px;
@@ -146,14 +163,6 @@ a {
 
 .button > a {
   color: white; }
-
-.button--addOnLeft {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0; }
-
-.button--addOnRight {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0; }
 
 .button:hover {
   background-color: #942d0a;
@@ -236,6 +245,26 @@ a {
 .img-circle:hover {
   background-color: #0a7194;
   border-radius: 50%; }
+
+.featureListItem {
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+  padding: 10px;
+  border-top: 1px solid #bcebfa; }
+
+.featureListItem__icon,
+.featureListItem__description {
+  padding: 5px 15px; }
+
+.featureListItem__icon {
+  font-size: 50px;
+  line-height: 0; }
+
+.featureListItem__description {
+  color: #0fa8db;
+  width: 350px;
+  font-size: 12px; }
 
 .chart div {
   font: 10px sans-serif;

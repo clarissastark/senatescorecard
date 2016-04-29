@@ -1,4 +1,5 @@
 <main data-ng-controller="senatIndexCtrl as vm">
+  <h3 class="header">
   <input class="form__input" type="text" placeholder="Filter on..." data-ng-model="vm.filter_on" />
 
   <div data-ng-repeat="senator in indexVM.senators | filter: vm.filter_on | orderBy: vm.sort_on : vm.is_descending">

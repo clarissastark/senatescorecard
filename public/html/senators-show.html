@@ -1,62 +1,57 @@
 <div data-ng-if="showVM.senator">
-  <h2>Sen. {{showVM.senator.firstName}} {{showVM.senator.lastName}}</h2>
-
-  <h3>LCV Score</h3>
+  <h2 class="centered header">Sen. {{showVM.senator.firstName}} {{showVM.senator.lastName}}</h2>
 
   <div class="chart"></div>
 
   <div class="cardGroup">
     <div class="card cardGroup__card">
+      <div class="card__title">League of Conservation Voters Rating</div>
       <div class="card__description cardGroup__cardDescription">
         <div class="fa fa-globe card__descriptionIcon fa-5x"></div>
-        <div class="card__descriptionText">2015 Score: {{showVM.senator.score2015}}%</div>
+        <div class="card__descriptionText">2015 Score: {{showVM.senator.score2015}}% || Lifetime Score: {{showVM.senator.scoreLifetime}}%</div>
       </div>
+      
     </div>
     <div class="card cardGroup__card">
+      <div class="card__title">User Ratings</div>
       <div class="card__description cardGroup__cardDescription">
-        <div class="icon fa fa-globe card__descriptionIcon"></div>
-        <div class="card__descriptionText">Lifetime Score: {{showVM.senator.scoreLifetime}}%</div>
+        <div class="fa fa-users card__descriptionIcon fa-5x"></div>
+        <div class="card__descriptionText">{{showVM.senator.reviews.length}} User Reviews</div>
       </div>
     </div>
   </div>
-  <!-- <table>
-  <thead>
-  <th data-ng-click="vm.sort_data_by('name')">Anti-Environment Votes</th>
-  <th>Pro-Environment Votes</th>
-  <th>Missed Votes</th>
-</thead> -->
-<!-- {{showVM.senator["Anti-environment votes"]}}
-{{showVM.senator["Pro-environment votes"]}}
-{{showVM.senator["Missed votes"]}} -->
 
-<h3>Anti-environment Votes</h3>
-<div data-ng-repeat="antiEnviroVote in showVM.senator.antiEnviroVotes">
-  <p>{{antiEnviroVote}}</p>
-</div>
-
-<h3>Pro-environment Votes</h3>
-<div data-ng-repeat="proEnviroVote in showVM.senator.proEnviroVotes">
-  <p>{{proEnviroVote}}</p>
-</div>
-
-<h3>Missed Votes</h3>
-<div data-ng-repeat="missedVotes in showVM.senator.missedVotes">
-  <p>{{missedVotes}}</p>
-</div>
-
-<h3>User Reviews</h3>
-<div data-ng-repeat="review in showVM.senator.reviews track by $index">
-  <div class="card card--fixedWidth">
-    <p>{{review}}</p>
-    <div class="card__btn" data-ng-click="showVM.removeReview($index)">Delete Review</div>
+  <h3 class="centered header">Anti-environment Votes</h3>
+  <div data-ng-repeat="antiEnviroVote in showVM.senator.antiEnviroVotes">
+    <p>{{antiEnviroVote}}</p>
   </div>
-</div>
 
-<!-- <div class="card card--fixedWidth">
-<textarea type="text" placeholder="Add your review here" data-ng-model="showVM.newReview"/></textarea>
-<div class="card__btn" data-ng-click="showVM.addReview()" type="submit">Add a review</div>
-</div> -->
+  <h3 class="centered header">Pro-environment Votes</h3>
+  <div data-ng-repeat="proEnviroVote in showVM.senator.proEnviroVotes">
+    <p>{{proEnviroVote}}</p>
+  </div>
 
-<div data-ng-if="!showVM.senator">
-  <h2>That senator couldn't be found!</h2>
-</div>
+  <h3 class="centered header">Missed Votes</h3>
+  <div data-ng-repeat="missedVotes in showVM.senator.missedVotes">
+    <p>{{missedVotes}}</p>
+  </div>
+
+  <h3 class="centered header" id="reviews">User Reviews</h3>
+
+  <div data-ng-repeat="review in showVM.senator.reviews track by $index">
+    <div class="featureListItem">
+      <div class="featureListItem__icon">
+        <div class="fa fa-user"></div>
+      </div>
+      <div class="featureListItem__description">{{review}}</div>
+      <button class="button" data-ng-click="showVM.removeReview($index)">Delete Review</button>
+    </div>
+  </div>
+
+  <textarea class="form__input" type="text" placeholder="Add your review here" data-ng-model="showVM.newReview"/></textarea>
+  <div class="card__btn" data-ng-click="showVM.addReview()" type="submit">Add a review</div>
+
+
+  <div data-ng-if="!showVM.senator">
+    <h2>That senator couldn't be found!</h2>
+  </div>
