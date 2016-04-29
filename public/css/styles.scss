@@ -245,12 +245,11 @@ a {
 }
 
 .form-control {
-  width: 95%;
+  width: 98%;
 }
 
 .formSection+.formSection {
   border-left: none;
-  border-top: 1px dotted lighten(complement($primaryColor), 10%);
   margin: 10px 0px 0px 0px;
 }
 
@@ -258,7 +257,6 @@ a {
   display: block;
   font-size: 14px;
   font-weight: 700;
-  color: #373D44;
   margin-bottom: 6px;
 }
 

@@ -194,18 +194,16 @@ a {
   margin-right: auto; }
 
 .form-control {
-  width: 95%; }
+  width: 98%; }
 
 .formSection + .formSection {
   border-left: none;
-  border-top: 1px dotted #db420f;
   margin: 10px 0px 0px 0px; }
 
 .form__label {
   display: block;
   font-size: 14px;
   font-weight: 700;
-  color: #373D44;
   margin-bottom: 6px; }
 
 .formFooter {

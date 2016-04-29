@@ -7,14 +7,14 @@
   </div>
   <div class="formSection" data-ng-submit="login()">
     <div class="form__label">
+      <input type="text" class="form-control" name="username" data-ng-model="loginForm.username" required>
       <label>Email Address</label>
     </div>
-    <input type="text" class="form-control" name="username" data-ng-model="loginForm.username" required>
   </div>
   <div class="form__label">
+    <input type="password" class="form-control" name="password" data-ng-model="loginForm.password" required>
     <label>Password</label>
   </div>
-  <input type="password" class="form-control" name="password" data-ng-model="loginForm.password" required>
 
   <div class="formFooter">
     <div class="formFooter__section">
