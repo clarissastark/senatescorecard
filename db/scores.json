@@ -1,0 +1,402 @@
+[
+  {
+    "lastName": "Boxer",
+    "score2015": 100
+  },
+  {
+    "lastName": "Feinstein",
+    "score2015": 88
+  },
+  {
+    "lastName": "Schumer",
+    "score2015": 100
+  },
+  {
+    "lastName": "Gillibrand",
+    "score2015": 100
+  },
+  {
+    "lastName": "Rubio",
+    "score2015": 0
+  },
+  {
+    "lastName": "Nelson",
+    "score2015": 84
+  },
+  {
+    "lastName": "Sessions",
+    "score2015": 4
+  },
+  {
+    "lastName": "Shelby",
+    "score2015": 4
+  },
+  {
+    "lastName": "Schatz",
+    "score2015": 96
+  },
+  {
+    "lastName": "Hirono",
+    "score2015": 100
+  },
+  {
+    "lastName": "Blunt",
+    "score2015": 4
+  },
+  {
+    "lastName": "McCaskill",
+    "score2015": 76
+  },
+  {
+    "lastName": "Alexander",
+    "score2015": 24
+  },
+  {
+    "lastName": "Corker",
+    "score2015": 4
+  },
+  {
+    "lastName": "Cassidy",
+    "score2015": 0
+  },
+  {
+    "lastName": "Vitter",
+    "score2015": 0
+  },
+  {
+    "lastName": "Toomey",
+    "score2015": 0
+  },
+  {
+    "lastName": "Casey",
+    "score2015": 88
+  },
+  {
+    "lastName": "Stabenow",
+    "score2015": 100
+  },
+  {
+    "lastName": "Peters",
+    "score2015": 100
+  },
+  {
+    "lastName": "Heller",
+    "score2015": 8
+  },
+  {
+    "lastName": "Reid",
+    "score2015": "n/a"
+  },
+  {
+    "lastName": "Booker",
+    "score2015": 100
+  },
+  {
+    "lastName": "Menendez",
+    "score2015": 100
+  },
+  {
+    "lastName": "Portman",
+    "score2015": 8
+  },
+  {
+    "lastName": "Brown",
+    "score2015": 96
+  },
+  {
+    "lastName": "Shaheen",
+    "score2015": 96
+  },
+  {
+    "lastName": "Ayotte",
+    "score2015": 56
+  },
+  {
+    "lastName": "Klobuchar",
+    "score2015": 100
+  },
+  {
+    "lastName": "Franken",
+    "score2015": 100
+  },
+  {
+    "lastName": "Johnson",
+    "score2015": 0
+  },
+  {
+    "lastName": "Baldwin",
+    "score2015": 100
+  },
+  {
+    "lastName": "McCain",
+    "score2015": 4
+  },
+  {
+    "lastName": "Flake",
+    "score2015": 0
+  },
+  {
+    "lastName": "Enzi",
+    "score2015": 0
+  },
+  {
+    "lastName": "Barrasso",
+    "score2015": 0
+  },
+  {
+    "lastName": "Perdue",
+    "score2015": 0
+  },
+  {
+    "lastName": "Isakson",
+    "score2015": 0
+  },
+  {
+    "lastName": "Cardin",
+    "score2015": 96
+  },
+  {
+    "lastName": "Mikulski",
+    "score2015": 96
+  },
+  {
+    "lastName": "Cruz",
+    "score2015": 0
+  },
+  {
+    "lastName": "Cornyn",
+    "score2015": 0
+  },
+  {
+    "lastName": "Daines",
+    "score2015": 0
+  },
+  {
+    "lastName": "Tester",
+    "score2015": 84
+  },
+  {
+    "lastName": "Murkowski",
+    "score2015": 4
+  },
+  {
+    "lastName": "Sullivan",
+    "score2015": 0
+  },
+  {
+    "lastName": "Gardner",
+    "score2015": 16
+  },
+  {
+    "lastName": "Bennet",
+    "score2015": 84
+  },
+  {
+    "lastName": "Hoeven",
+    "score2015": 0
+  },
+  {
+    "lastName": "Heitkamp",
+    "score2015": 40
+  },
+  {
+    "lastName": "Kirk",
+    "score2015": 40
+  },
+  {
+    "lastName": "Durbin",
+    "score2015": 100
+  },
+  {
+    "lastName": "Udall",
+    "score2015": 92
+  },
+  {
+    "lastName": "Heinrich",
+    "score2015": 96
+  },
+  {
+    "lastName": "Lee",
+    "score2015": 4
+  },
+  {
+    "lastName": "Hatch",
+    "score2015": 0
+  },
+  {
+    "lastName": "Wyden",
+    "score2015": 92
+  },
+  {
+    "lastName": "Merkley",
+    "score2015": 100
+  },
+  {
+    "lastName": "Murphy",
+    "score2015": 100
+  },
+  {
+    "lastName": "Blumenthal",
+    "score2015": 100
+  },
+  {
+    "lastName": "Cotton",
+    "score2015": 0
+  },
+  {
+    "lastName": "Boozman",
+    "score2015": 0
+  },
+  {
+    "lastName": "Lankford",
+    "score2015": 4
+  },
+  {
+    "lastName": "Inhofe",
+    "score2015": 0
+  },
+  {
+    "lastName": "Ernst",
+    "score2015": 0
+  },
+  {
+    "lastName": "Grassley",
+    "score2015": 4
+  },
+  {
+    "lastName": "Markey",
+    "score2015": 100
+  },
+  {
+    "lastName": "Warren",
+    "score2015": 100
+  },
+  {
+    "lastName": "Coats",
+    "score2015": 0
+  },
+  {
+    "lastName": "Donnelly",
+    "score2015": 68
+  },
+  {
+    "lastName": "Burr",
+    "score2015": 4
+  },
+  {
+    "lastName": "Tillis",
+    "score2015": 4
+  },
+  {
+    "lastName": "Warner",
+    "score2015": 80
+  },
+  {
+    "lastName": "Kaine",
+    "score2015": 88
+  },
+  {
+    "lastName": "Cantwell",
+    "score2015": 96
+  },
+  {
+    "lastName": "Murray",
+    "score2015": 96
+  },
+  {
+    "lastName": "Capito",
+    "score2015": 4
+  },
+  {
+    "lastName": "Manchin III",
+    "score2015": 40
+  },
+  {
+    "lastName": "Coons",
+    "score2015": 92
+  },
+  {
+    "lastName": "Carper",
+    "score2015": 84
+  },
+  {
+    "lastName": "McConnell",
+    "score2015": 0
+  },
+  {
+    "lastName": "Paul",
+    "score2015": 8
+  },
+  {
+    "lastName": "Reed",
+    "score2015": 100
+  },
+  {
+    "lastName": "Whitehouse",
+    "score2015": 100
+  },
+  {
+    "lastName": "Graham",
+    "score2015": 12
+  },
+  {
+    "lastName": "Scott",
+    "score2015": 0
+  },
+  {
+    "lastName": "Wicker",
+    "score2015": 0
+  },
+  {
+    "lastName": "Cochran",
+    "score2015": 0
+  },
+  {
+    "lastName": "King",
+    "score2015": 100
+  },
+  {
+    "lastName": "Collins",
+    "score2015": 60
+  },
+  {
+    "lastName": "Risch",
+    "score2015": 0
+  },
+  {
+    "lastName": "Crapo",
+    "score2015": 0
+  },
+  {
+    "lastName": "Sasse",
+    "score2015": 0
+  },
+  {
+    "lastName": "Fischer",
+    "score2015": 0
+  },
+  {
+    "lastName": "Moran",
+    "score2015": 0
+  },
+  {
+    "lastName": "Roberts",
+    "score2015": 0
+  },
+  {
+    "lastName": "Thune",
+    "score2015": 4
+  },
+  {
+    "lastName": "Rounds",
+    "score2015": 0
+  },
+  {
+    "lastName": "Leahy",
+    "score2015": 100
+  },
+  {
+    "lastName": "Sanders",
+    "score2015": 100
+  }
+]

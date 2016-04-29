@@ -1,7 +1,6 @@
-<div data-ng-if="showVM.senator">
-  <h2 class="centered header">Sen. {{showVM.senator.firstName}} {{showVM.senator.lastName}}</h2>
 
-  <div class="chart"></div>
+<div data-ng-if="showVM.senator">
+  <h2 class="centered">Sen. {{showVM.senator.firstName}} {{showVM.senator.lastName}}</h2>
 
   <div class="cardGroup">
     <div class="card cardGroup__card">
@@ -10,7 +9,7 @@
         <div class="fa fa-globe card__descriptionIcon fa-5x"></div>
         <div class="card__descriptionText">2015 Score: {{showVM.senator.score2015}}% || Lifetime Score: {{showVM.senator.scoreLifetime}}%</div>
       </div>
-      
+
     </div>
     <div class="card cardGroup__card">
       <div class="card__title">User Ratings</div>
@@ -21,22 +20,22 @@
     </div>
   </div>
 
-  <h3 class="centered header">Anti-environment Votes</h3>
+  <h3 class="centered">Anti-environment Votes</h3>
   <div data-ng-repeat="antiEnviroVote in showVM.senator.antiEnviroVotes">
     <p>{{antiEnviroVote}}</p>
   </div>
 
-  <h3 class="centered header">Pro-environment Votes</h3>
+  <h3 class="centered">Pro-environment Votes</h3>
   <div data-ng-repeat="proEnviroVote in showVM.senator.proEnviroVotes">
     <p>{{proEnviroVote}}</p>
   </div>
 
-  <h3 class="centered header">Missed Votes</h3>
+  <h3 class="centered">Missed Votes</h3>
   <div data-ng-repeat="missedVotes in showVM.senator.missedVotes">
     <p>{{missedVotes}}</p>
   </div>
 
-  <h3 class="centered header" id="reviews">User Reviews</h3>
+  <h3 class="centered" id="reviews">User Reviews</h3>
 
   <div data-ng-repeat="review in showVM.senator.reviews track by $index">
     <div class="featureListItem">
