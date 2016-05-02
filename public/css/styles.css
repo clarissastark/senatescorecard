@@ -14,27 +14,31 @@ a {
   align-items: center;
   justify-content: center;
   min-height: 300px;
+  padding: 10px;
+  background-image: url(../imgs/congress_lighter_opacity80perc.jpg);
+  background-size: 100%;
+  background-position: top;
+  background-repeat: no-repeat;
+  border-radius: 0;
   padding: 10px; }
 
 .centeredPrompt__item + .centeredPrompt__item {
   margin-top: 5px; }
 
-.centeredPromptIcon {
-  font-size: 60px;
-  line-height: 0; }
-
 .centeredPromptLabel {
-  color: #074d64;
+  color: #053b4c;
   font-size: 30px;
   font-weight: 700;
-  text-align: center; }
+  text-align: center;
+  text-shadow: 0px 1px #2dc0f0; }
 
 .centeredPromptDetails {
-  color: black;
+  color: white;
   font-size: 16px;
   margin-bottom: 10px;
   text-align: center;
-  font-family: Georgia, serif; }
+  font-family: Georgia, serif;
+  text-shadow: 1px 1px #053b4c; }
 
 .icon {
   color: white; }
