@@ -22,17 +22,17 @@
 
   <h3 class="centered">Anti-environment Votes</h3>
   <div data-ng-repeat="antiEnviroVote in showVM.senator.antiEnviroVotes">
-    <p>{{antiEnviroVote}}</p>
+    <div class="card">{{antiEnviroVote}}</div>
   </div>
 
   <h3 class="centered">Pro-environment Votes</h3>
   <div data-ng-repeat="proEnviroVote in showVM.senator.proEnviroVotes">
-    <p>{{proEnviroVote}}</p>
+    <div class="card">{{proEnviroVote}}</div>
   </div>
 
-  <h3 class="centered">Missed Votes</h3>
+  <h3 data-ng-if="senator.missedVotes != []" class="centered">Missed Votes</h3>
   <div data-ng-repeat="missedVotes in showVM.senator.missedVotes">
-    <p>{{missedVotes}}</p>
+    <div class="card">{{missedVotes}}</div>
   </div>
 
   <h3 class="centered" id="reviews">User Reviews</h3>
