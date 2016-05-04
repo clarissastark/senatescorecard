@@ -28,19 +28,19 @@
         <span class="title">{{antiEnviroVote}}</span>
       </div>
     </div>
-    <div data-ng-if="!showVM.senator.antiEnviroVotes.length != 0">
+    <div data-ng-if="showVM.senator.antiEnviroVotes.length === 0">
       <p class="centered">Sen. {{showVM.senator.lastName}} didn't cast any anti-environment votes in 2015.</p>
     </div>
   </div>
 
   <div class="collection centered">
     <h3 class="centered">Pro-environment Votes</h3>
-    <div data-ng-if="showVM.senator.proEnviroVotes.length != 0" data-ng-repeat="proEnviroVote in showVM.senator.proEnviroVotes">
+    <div data-ng-repeat="proEnviroVote in showVM.senator.proEnviroVotes">
       <div class="collection-item centered">
         <span class="title">{{proEnviroVote}}</span>
       </div>
     </div>
-    <div data-ng-if="!showVM.senator.proEnviroVotes.length != 0">
+    <div data-ng-if="showVM.senator.proEnviroVotes.length === 0">
       <p class="centered">Sen. {{showVM.senator.lastName}} didn't cast any pro-environment votes in 2015.</p>
     </div>
   </div>
@@ -52,7 +52,7 @@
         <span class="title">{{missedVotes}}</span>
       </div>
     </div>
-    <div data-ng-if="!showVM.senator.missedVotes.length != 0">
+    <div data-ng-if="showVM.senator.missedVotes.length === 0">
       <p class="centered">Sen. {{showVM.senator.lastName}} didn't miss any envrionmental votes in 2015.</p>
     </div>
   </div>
