@@ -21,32 +21,43 @@
     </div>
   </div>
 
-  <h3 class="centered">Anti-environment Votes</h3>
-  <div data-ng-if="showVM.senator.antiEnviroVotes.length != 0" data-ng-repeat="antiEnviroVote in showVM.senator.antiEnviroVotes">
-    <div>{{antiEnviroVote}}</div>
-  </div>
-  <div data-ng-if="!showVM.senator.antiEnviroVotes.length != 0">
-    <p>Sen. {{showVM.senator.lastName}} didn't cast any anti-environment votes in 2015.</p>
-  </div>
-
-  <h3 class="centered">Pro-environment Votes</h3>
-  <div data-ng-if="showVM.senator.proEnviroVotes.length != 0" data-ng-repeat="proEnviroVote in showVM.senator.proEnviroVotes">
-    <div>{{proEnviroVote}}</div>
-  </div>
-  <div data-ng-if="!showVM.senator.proEnviroVotes.length != 0">
-    <p>Sen. {{showVM.senator.lastName}} didn't cast any pro-environment votes in 2015.</p>
+    <h3 class="centered">Anti-environment Votes</h3>
+    <div class="collection centered">
+    <div data-ng-if="showVM.senator.antiEnviroVotes.length != 0" data-ng-repeat="antiEnviroVote in showVM.senator.antiEnviroVotes">
+      <div class="collection-item centered">
+        <span class="title">{{antiEnviroVote}}</span>
+      </div>
+    </div>
+    <div data-ng-if="!showVM.senator.antiEnviroVotes.length != 0">
+      <p class="centered">Sen. {{showVM.senator.lastName}} didn't cast any anti-environment votes in 2015.</p>
+    </div>
   </div>
 
-  <h3 class="centered">Missed Votes</h3>
-  <div data-ng-if="showVM.senator.missedVotes.length != 0" data-ng-repeat="missedVotes in showVM.senator.missedVotes">
-    <div>{{missedVotes}}</div>
+  <div class="collection centered">
+    <h3 class="centered">Pro-environment Votes</h3>
+    <div data-ng-if="showVM.senator.proEnviroVotes.length != 0" data-ng-repeat="proEnviroVote in showVM.senator.proEnviroVotes">
+      <div class="collection-item centered">
+        <span class="title">{{proEnviroVote}}</span>
+      </div>
+    </div>
+    <div data-ng-if="!showVM.senator.proEnviroVotes.length != 0">
+      <p class="centered">Sen. {{showVM.senator.lastName}} didn't cast any pro-environment votes in 2015.</p>
+    </div>
   </div>
-  <div data-ng-if="!showVM.senator.missedVotes.length != 0">
-    <p>Sen. {{showVM.senator.lastName}} didn't miss any envrionmental votes in 2015.</p>
+
+  <div class="collection centered">
+    <h3 class="centered">Missed Votes</h3>
+    <div data-ng-if="showVM.senator.missedVotes.length != 0" data-ng-repeat="missedVotes in showVM.senator.missedVotes">
+      <div class="collection-item centered">
+        <span class="title">{{missedVotes}}</span>
+      </div>
+    </div>
+    <div data-ng-if="!showVM.senator.missedVotes.length != 0">
+      <p class="centered">Sen. {{showVM.senator.lastName}} didn't miss any envrionmental votes in 2015.</p>
+    </div>
   </div>
 
   <h3 class="centered" id="reviews">User Reviews</h3>
-
   <div data-ng-repeat="review in showVM.senator.reviews track by $index">
     <div class="featureListItem">
       <div class="featureListItem__icon">

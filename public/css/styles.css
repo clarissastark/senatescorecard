@@ -119,7 +119,9 @@ a {
   padding: 5px 15px;
   border-top: 1px solid white;
   background-color: #db420f;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  border-radius: 4px;
+  cursor: pointer; }
 
 .card__btn:hover {
   background-color: #ac340c; }
@@ -132,7 +134,7 @@ a {
 
 .cardGroup {
   display: flex;
-  border: 1px solid #CAD0D2;
+  border: 1px solid #c8ced0;
   border-radius: 4px;
   overflow: hidden; }
 
@@ -142,7 +144,7 @@ a {
   border-radius: 0; }
 
 .cardGroup__card + .cardGroup__card {
-  border-left: 1px solid #bcebfa; }
+  border-left: 1px solid #c8ced0; }
 
 .cardGroup__cardDescription {
   flex: 1 1 auto; }
@@ -156,8 +158,8 @@ a {
   color: white;
   background-color: #db420f;
   font-size: 12px;
-  border: 1px solid #ac340c;
-  border-radius: 4px; }
+  border-radius: 4px;
+  text-transform: uppercase; }
 
 .button > a {
   color: white; }
@@ -192,7 +194,7 @@ a {
 .form__input {
   display: block;
   padding: 8px 12px;
-  border: 1px solid #bcebfa;
+  border: 1px solid #c8ced0;
   font-size: 16px;
   width: 95%;
   margin-bottom: 10px;
@@ -255,7 +257,6 @@ a {
   font-size: 12px;
   font-weight: 700;
   padding: 5px 15px;
-  border-top: 1px solid #8ddcf7;
   border-top-radius: 4px;
   background-color: #ecf9fe; }
 
@@ -278,6 +279,27 @@ a {
   color: #0fa8db;
   width: 400px;
   font-size: 12px; }
+
+.collection {
+  padding: 10px 10px;
+  overflow: hidden;
+  position: relative;
+  margin: auto;
+  width: 90%; }
+
+.collection .collection-item {
+  border: 1px solid #c8ced0;
+  border-radius: 4px;
+  padding: 10px 10px;
+  margin: 5px 5px;
+  float: left;
+  height: 90px;
+  width: 150px;
+  vertical-align: middle; }
+
+.title {
+  font-size: 13px;
+  color: #074d64; }
 
 p.bar-label {
   margin: 0px; }
