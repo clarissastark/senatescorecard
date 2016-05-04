@@ -173,6 +173,7 @@ a {
   overflow: hidden;
 }
 
+
 .cardGroup__card {
   flex: 1 1 0;
   border: none;
@@ -185,6 +186,10 @@ a {
 
 .cardGroup__cardDescription {
   flex: 1 1 auto;
+}
+
+.cardGroup__card:hover {
+  background-color: lighten($primaryColor, 100%);
 }
 
 .button {

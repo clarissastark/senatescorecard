@@ -147,6 +147,9 @@ a {
 .cardGroup__cardDescription {
   flex: 1 1 auto; }
 
+.cardGroup__card:hover {
+  background-color: white; }
+
 .button {
   cursor: pointer;
   padding: 5px 15px;
