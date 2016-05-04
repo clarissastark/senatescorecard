@@ -42,7 +42,7 @@
       <!-- <div class="siteHeader__item siteHeaderButton">Reviews</div> -->
     </div>
     <!-- This section gets pushed to the right side-->
-    <div class="siteHeader__section">
+    <!-- <div class="siteHeader__section">
       <div class="siteHeader__item siteHeaderButton inactive" data-ng-if="currentUser">
         <div ng-controller="logoutController">
           <a data-ng-click='logout()'>Logout</a>
@@ -51,7 +51,7 @@
       <div class="siteHeader__item siteHeaderButton" data-ng-if="!currentUser">
         <a href="/login">Login</a>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>
 </div>
@@ -68,9 +68,17 @@
 console.log("{{indexVM.senators.antiEnviroVote.length}}");
 
 var results = [
-	{voteCategory: "Anti-Environment Votes", votes:{{indexVM.senators.antiEnviroVote.length}},
-	{voteCategory: "Pro-environment Votes", votes:{{indexVM.senators.proEnviroVote.length}} },
-	{voteCategory: "Missed Votes", votes:{{indexVM.senators.missedVotes.length}} }
+	{
+    voteCategory: "Anti-Environment Votes",
+  votes:{{indexVM.senators.antiEnviroVote.length}}
+},
+	{
+    voteCategory: "Pro-environment Votes",
+    votes:{{indexVM.senators.proEnviroVote.length}}
+  },
+	{voteCategory: "Missed Votes", votes:{{
+    indexVM.senators.missedVotes.length
+  }} }
 ];
 
 var gridWidth = 80;
